@@ -1,0 +1,126 @@
+.backing_plate {
+  background-color: rgb(16, 121, 168);
+  width: 308px;
+  height: 633px;
+  z-index: 152;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.backing_plate::-webkit-scrollbar {
+  width: 5px;
+}
+.backing_plate::-webkit-scrollbar-track {
+  background: rgb(255, 255, 255);
+  margin-left: 10px;
+}
+.backing_plate::-webkit-scrollbar-thumb{
+  background: #233340;
+}
+
+.msearch {
+    background: #0d5b7e;
+    border: 0;
+    margin-left: 5px;
+}
+.mesearch{
+  font-size: 14px;
+  font-family: "Roboto";
+  color: rgb(255, 255, 255);
+  -moz-transform: matrix( 0.85242178487168,0,0,1,0,0);
+  -webkit-transform: matrix( 0.85242178487168,0,0,1,0,0);
+  -ms-transform: matrix( 0.85242178487168,0,0,1,0,0);
+  z-index: 236;
+  
+}
+.mesearch input{
+  color: #fff;
+  background: #0d5b7e;
+  border: 1px solid #0d5b7e;
+  border-radius: 15px;
+}
+
+/***********************/
+.backing_plate .list-group{
+  background: #0d5b7e;
+  margin-left: -15px;
+}
+.backing_plate .list-group .active{
+   background: #24516c;
+   border-left: 2px solid #22272e;
+}
+.backing_plate .list-group a:hover{
+   background: #24516c;
+   border-left: 2px solid #22272e;
+}
+
+.backing_plate .list-group a{
+  width: 308px;
+  height: 100px;
+  z-index: 153;
+  background: #1079a8;
+  border-bottom: 1px solid #24516c;
+  border-right: 0;
+  border-left: 0;
+  color: #fff;
+  border-top: 0;
+  padding-top: 0;
+}
+
+.backing_plate .list-group a .online{
+   margin-top: -49px;
+
+}
+.backing_plate .list-group a h3{
+  font-size: 18px;
+  font-family: "Roboto";
+  font-color:#fff !important;
+  padding-left: 5px;
+  z-index: 999999;
+
+
+}
+.backing_plate .list-group a p{
+  font-family: "Roboto";
+  font-color:#fff !important;
+  padding-left: 5px;
+  z-index: 999999;
+
+
+
+}
+.td-img-border{
+  border-bottom: 2px solid #fff;
+}
+
+.messagebody{
+  
+  height: 400px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.messagebody::-webkit-scrollbar {
+  width: 5px;
+}
+.messagebody::-webkit-scrollbar-track {
+  background: #fafafa;
+  margin-left: 10px;
+}
+.messagebody::-webkit-scrollbar-thumb{
+  background: rgb(2, 136, 209);
+}
+.chatbox{
+   
+}
+
+.inputs {
+      margin-top: -24px !important;
+    padding-top: 13px !important;
+    background: #ebedee !important;
+    width: 100% !important;
+    margin-left: -15px !important;
+    padding-bottom: 48px !important;
+}
+.maincontant {
+    background: #fafafa !important;
+    min-height: 630px !important;
+}

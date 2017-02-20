@@ -1,0 +1,65 @@
+.log .left {
+    padding-top: 12px;
+    padding-left: 47px;
+    padding-bottom: 29px;
+    background: #fdfdfd;
+    height: 648px;
+}
+
+.log .inputlog{
+	margin: auto;
+	width: 355px;
+}
+
+.logh {
+    margin-top: 25%;
+    text-align: center;
+}
+.logb{
+	text-align: center;
+	padding-bottom: 6%;
+
+}
+
+.input-group-addon{
+	border-right: 0;
+	background: #ffffff;
+	height: 42px;
+}
+#login-id,#login-password{
+	height: 42px;
+    border-left: 0;
+    width: 100%;
+
+}
+
+#btn-login{
+	height: 42px;
+	line-height: 1.9;
+	font-size: 16px;
+
+}
+#fbass{
+	text-align: center;
+}
+.foot{
+	text-align: center;
+	padding-top: 3%;
+}
+/*rightpart*/
+.log .right{
+	padding: 0;
+
+}
+.carousel-indicators .active {
+    width: 21px;
+    height: 21px;
+    margin: 0;
+    background-color: #fff;
+}
+
+#myCarousel img {
+  height: 648px;
+  max-width: 100%;
+  width: 100%;
+}

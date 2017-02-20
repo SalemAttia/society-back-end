@@ -1,0 +1,128 @@
+.activec{
+	color: #1781e0 !important;
+	font-weight: bold;
+}
+.c-n1{
+	color: #868686;
+
+}
+.doughnut-legend li{
+	margin-bottom: 10%;
+}
+
+
+/*==========  Non-Mobile First Method  ==========*/
+@media only screen and (max-width: 1366px){
+	 .dsd{
+    	width: 115px;
+  
+    font-size: 12px;
+    }
+	#dropdownMenu1
+{
+	width: 115px;
+  border-radius: 0px;
+  margin-top: 21px;
+  font-size: 12px !important;
+}
+.user-img
+{
+  margin-top: 30px;
+  margin-left: 13px;
+  margin-bottom: 0px;
+  width: 13px;
+  height: 13px;
+}
+.notifi-img
+{
+  margin-top: 30px;
+  margin-left: 0 !important;
+  margin-bottom: 0px;
+  width: 13px;
+  height: 13px;
+}
+.user-text
+{
+  font-family: "open sans";
+  color: #97abcd;
+  font-weight: bold;
+}
+.notification-text
+{
+  font-family: "open sans";
+  color: #97abcd;
+  font-weight: bold;
+}
+.users
+{
+  width: 100px;
+  margin-left: 30px;
+}
+.notifications
+{
+  width: 100px;
+  margin-left: 30px;
+}
+ #container-currency
+    {
+        width: 100% !important;
+     }
+     .highcharts-container{
+     	width: 100% !important;
+     } 
+}
+ 
+	/* Large Devices, Wide Screens */
+	@media only screen and (max-width : 1200px){
+
+		 #container-currency
+    {
+        width: 100% !important;
+     }
+     .highcharts-container{
+     	width: 100% !important;
+     } 
+
+
+
+
+
+        #dropdownMenu1 {
+    width: 115px;
+    border-radius: 0px;
+    margin-top: 21px;
+    font-size: 12px;
+    }
+    .dsd{
+    	width: 115px;
+  
+    font-size: 12px;
+    }
+
+	}
+ 
+	/* Medium Devices, Desktops */
+	@media only screen and (max-width : 992px){
+		   #dropdownMenu1 {
+    width: 115px;
+    border-radius: 0px;
+    margin-top: 21px;
+    font-size: 12px;
+    }
+ 
+	}
+ 
+	/* Small Devices, Tablets */
+	@media only screen and (max-width : 768px){
+ 
+	}
+ 
+	/* Extra Small Devices, Phones */
+	@media only screen and (max-width : 480px){
+ 
+	}
+ 
+	/* Custom, iPhone Retina */
+	@media only screen and (max-width : 320px){
+ 
+	}

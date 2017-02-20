@@ -1,0 +1,139 @@
+body::-webkit-scrollbar {
+  width: 0;
+}
+body::-webkit-scrollbar-track {
+   background: #fdfdfd;
+}
+body::-webkit-scrollbar-thumb{
+  background: #fdfdfd;
+}
+.log .left {
+    padding-top: 12px;
+    padding-left: 47px;
+    padding-bottom: 29px;
+    background: #fdfdfd;
+    height: 648px;
+}
+
+.log .inputlog{
+	margin: auto;
+	width: 355px;
+}
+
+.logh {
+    margin-top: 25%;
+    text-align: center;
+}
+.logb{
+	text-align: center;
+	padding-bottom: 6%;
+
+}
+
+.input-group-addon{
+	border-right: 0;
+	background: #ffffff;
+	height: 42px;
+   
+}
+#login-id,#login-password{
+	height: 42px;
+    border-left: 0;
+    width: 100%;
+  
+
+}
+input:focus { 
+    outline: none !important;
+    border: none !important;
+    
+}
+
+#btn-login{
+	height: 42px;
+	line-height: 1.9;
+	font-size: 16px;
+
+}
+#fbass{
+	text-align: center;
+}
+.foot{
+	text-align: center;
+	padding-top: 3%;
+}
+/*rightpart*/
+.log .right{
+	padding: 0;
+
+
+}
+.right {
+    background: url('../images/loginpage/bg.png') repeat;
+    min-height: 640px;
+    padding-bottom: 0;
+    margin-bottom:0; 
+}
+/*-------------------------------*/
+/*      Code snippet by          */
+/*      @maridlcrmn              */
+/*-------------------------------*/
+
+
+section {
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+.quote {
+    color: rgba(0,0,0,.1);
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/*-------------------------------*/
+/*    Carousel Fade Transition   */
+/*-------------------------------*/
+
+#fade-quote-carousel.carousel {
+  padding-bottom: 60px;
+}
+#fade-quote-carousel.carousel .carousel-inner .item {
+  opacity: 0;
+  -webkit-transition-property: opacity;
+      -ms-transition-property: opacity;
+          transition-property: opacity;
+}
+#fade-quote-carousel.carousel .carousel-inner .active {
+  opacity: 1;
+  -webkit-transition-property: opacity;
+      -ms-transition-property: opacity;
+          transition-property: opacity;
+}
+#fade-quote-carousel.carousel .carousel-indicators {
+  bottom: 10px;
+  color: #fff;
+}
+#fade-quote-carousel.carousel .carousel-indicators > li {
+  background-color: #e84a64;
+  border: none;
+  color: #fff;
+}
+blockquote p{
+   color: #555555;
+    font-weight: bold;
+    background: #fff;
+    opacity: 0.7;
+    border-radius: 40px;
+    padding: 5px;
+}
+#fade-quote-carousel blockquote {
+    text-align: center;
+    border: none;
+}
+#fade-quote-carousel .profile-circle {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    border-radius: 100px;
+}

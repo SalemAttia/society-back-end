@@ -1,0 +1,69 @@
+/*****
+
+padding left 45px
+
+
+***/
+
+.maincontant{
+padding-left:40px;
+padding-right:20px;
+padding-top :25px;
+}
+
+.BG {
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+  padding-top: 20px;
+  padding-left: 25px;
+  width: 141px;
+  height: 172px;
+  margin-left:35px; 
+  margin-bottom: 35px;
+
+}
+
+.Rounded_Shape {
+  border-width: 3px;
+  border-color: rgb(0, 174, 239);
+  border-style: solid;
+  border-radius: 50%;
+  width: 92px;
+  height: 92px;
+
+}
+.Rounded_Shape img {
+	border-radius: 50%;
+    margin-left: 2.9%;
+    margin-top: 2.9%;
+}
+
+.friendname {
+  font-size: 19px;
+  font-family: "Roboto";
+  color: rgb(65, 64, 66);
+  font-weight: bold;
+  padding-left:6px;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+
+
+.Stage {
+  font-size: 15px;
+  font-family: "Roboto";
+  color: rgb(149, 149, 149);
+   font-weight: bold;
+  text-align: center;
+  padding: 0;
+  margin-bottom: 0;
+ 
+}
+.messagefriendicon {
+
+  opacity: 0.561;
+  width: 10px;
+  height: 11px;
+  padding: 0;
+}
