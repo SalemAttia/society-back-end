@@ -1,5 +1,5 @@
 <!-- main  css for all pages-->
-  <link href="css/home.css" rel="stylesheet">
+  <link href="{{asset('css/home.css')}}" rel="stylesheet">
 
   <!-- user home page -->
-  <link href="css/userhomepage.css" rel="stylesheet">
+  <link href="{{asset('css/userhomepage.css')}}" rel="stylesheet">

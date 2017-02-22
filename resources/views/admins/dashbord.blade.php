@@ -3,7 +3,14 @@
 <?php $title = "Dashbord";?>
 @endsection
 
-@section('content')
+@section('contant')
+<form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+        {{ csrf_field() }}
+ </form>
 
-  home contant here
+ <a href="{{ url('/logout') }}"
+                      onclick="event.preventDefault();
+                              document.getElementById('logout-form').submit();">
+                                        Logout
+                                        </a>
 @endsection

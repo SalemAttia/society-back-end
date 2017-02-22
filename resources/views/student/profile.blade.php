@@ -8,7 +8,7 @@
 
 @section('content')
 
-  home contant here
+  profile
 @endsection
 @section('js')
 @include('partials.homejs')

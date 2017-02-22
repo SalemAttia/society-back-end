@@ -48,36 +48,45 @@
               <li class="sidebar-brand">
 
                <img src="images/loginpage/one.jpg">
-               <h3>salem attia</h3>
+        
+               <h4 style="text-align: center;">{{Auth::user()->name}}</h4>
                <p>4th stage</p>
 
                <button class="btn btn-default">Student</button>
              </li>
               
              <li class="<?php $page =  $title; if ($page == 'Home') {echo 'active_l';}?>">
-              <a href="1.userhomepage.html"><i class="home" aria-hidden="true"></i>Home</a>
+              <a href="{{ url('/') }}"><i class="home" aria-hidden="true"></i>Home</a>
             </li>
            <li class="<?php $page =  $title; if ($page == 'Profile') {echo 'active_l';}?>">
-              <a href="1.profile.html"><i class="Profile" aria-hidden="true"></i>Profile</a>
+              <a href="{{ url('/profile') }}"><i class="Profile" aria-hidden="true"></i>Profile</a>
             </li>
            <li class="<?php $page =  $title; if ($page == 'Friends') {echo 'active_l';}?>">
-              <a href="1.friendpage.html"><i class="users" aria-hidden="true"></i>Friends</a>
+              <a href="{{ url('/friends') }}"><i class="users" aria-hidden="true"></i>Friends</a>
             </li>
            <li class="<?php $page =  $title; if ($page == 'Messages') {echo 'active_l';}?>">
-              <a href="1.message.html"><i class="message" aria-hidden="true"></i>Messages</a>
+              <a href="{{ url('/masseges') }}"><i class="message" aria-hidden="true"></i>Messages</a>
             </li>
            <li class="<?php $page =  $title; if ($page == 'Notification') {echo 'active_l';}?>">
-              <a href="1.notifications.html"><i class="not" aria-hidden="true"></i>Notification</a>
+              <a href="{{ url('/notification') }}"><i class="not" aria-hidden="true"></i>Notification</a>
             </li>
             <li class="<?php $page =  $title; if ($page == 'Groups') {echo 'active_l';}?>">
-              <a href="1.groups.html"><i class="groups" aria-hidden="true"></i>Groups</a>
+              <a href="{{ url('/groups') }}"><i class="groups" aria-hidden="true"></i>Groups</a>
             </li>
            <li class="<?php $page =  $title; if ($page == 'Questions') {echo 'active_l';}?>">
-              <a href="1.questionspage.html"><i class="questions" aria-hidden="true"></i>Questions</a>
+              <a href="{{ url('/questions') }}"><i class="questions" aria-hidden="true"></i>Questions</a>
             </li>
             <div id="sidbarfooter">
-              <a href="#" class="footicon"><i class="setting" aria-hidden="true"></i></a>
-              <a href="#" class="footicon pull-right"><i class="logout" aria-hidden="true"></i></a>
+            <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+              {{ csrf_field() }}
+            </form>
+            
+              <a href="{{ url('/setting') }}" class="footicon pull-right"><i class="setting" aria-hidden="true"></i> 
+              </a>
+            <a href="{{ url('/logout') }}" class="footicon" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+             <i class="logout" aria-hidden="true"></i>
+             </a>
+
             </div>
           </ul>
 
@@ -186,22 +195,26 @@
 
           <div class="row">
           <!-- maincontant -->
-            <div class="col-md-9 maincontant"> <!-- maincontant -->
+            <div class="col-md-12 maincontant"> <!-- maincontant -->
               <div class="row">  <!-- row -->
                @yield('content')
                </div>
             </div>
             <!-- endmain contant -->
-            <div class="col-md-3 col-sm-12 col-xs-12 chatlist"> <!-- saidbar right -->
-             <div class="row"> <!-- chat row -->
+              <!-- <div class="col-md-3 col-sm-12 col-xs-12 chatlist">  -->
+              <!-- saidbar right -->
+               <!-- <div class="row"> -->
+                <!-- chat row -->
 
-              @include('partials.chatbox')
+                <!-- include('partials.chatbox') -->
 
 
 
-        </div> <!-- end row of chat -->
+               <!-- </div> -->
+                <!-- end row of chat -->
 
-      </div>  <!-- end saidbar right -->
+             <!-- </div>  -->
+              <!-- end saidbar right -->
 
 
 

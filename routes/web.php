@@ -11,6 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('admins.dashbord');
-});
+Route::get('/','PagesController@home');
+Route::get('/profile','studentController@profile');
+Route::get('/groups','studentController@groups');
+Route::get('/friends','studentController@friends');
+Route::get('/masseges','studentController@masseges');
+Route::get('/notification','studentController@notification');
+Route::get('/questions','studentController@questions');
+Route::get('/setting','studentController@setting');
+Route::auth();

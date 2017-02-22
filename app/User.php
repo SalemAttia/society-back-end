@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-
+use App\answer;
 class User extends Authenticatable
 {
     use Notifiable;
@@ -26,4 +26,18 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function question()
+    {
+            return $this->hasMany(quetion::class);
+    }
+
+    public function answer()
+    {
+            return $this->hasMany(answer::class);
+    }
+    public function matrial()
+    {
+            return $this->hasMany(matrial::class);
+    }
 }

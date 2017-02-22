@@ -10,7 +10,15 @@
 
 @section('content')
 
-  home contant here
+<div class="row mainrow">
+	
+<!-- ask form -->
+@include('partials.homesections.askform')
+
+<!-- new feeds posts -->
+ @include('partials.homesections.newfeeds')
+
+</div>
 @endsection
 @section('js')
 @include('partials.homejs')
