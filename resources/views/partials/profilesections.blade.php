@@ -1,14 +1,12 @@
-  
-  <div class="row"> <!-- postsrow -->
-
-            <div class="col-sm-10 col-sm-offset-1">
-            
-		        @foreach ($subjects as $subject)
-		          @foreach ($subject->question as $question)
 
 
-		                <!-- ask question post -->
-              <div class="panel panel-white post panel-shadow"> <!-- postwell -->
+
+           <!-- Question posts -->
+           <div class="col-sm-10 col-sm-offset-1 tab-pane fade in active" id="tab1">
+
+            <!-- ask question post -->
+            @foreach($questions as $question)
+               <div class="panel panel-white post panel-shadow"> <!-- postwell -->
                 <div class="post-heading">
                   <div class="pull-left image">
                     <img src="http://bootdey.com/img/Content/user_1.jpg" class="img-circle avatar" alt="user profile image">
@@ -16,7 +14,7 @@
                   <div class="pull-left meta">
                     <div class="title h5">
                       <a href="#"><b>{{$question->User->name}}</b></a>
-                      Ask Question in <span class="quetion">{{$subject->name}}</span>
+                      Ask Question in <span class="quetion">{{$question->subject->name}}</span>
                     </div>
                     <h6 class="text-muted time">{{$question->created_at->diffForHumans()}}</h6>
                   </div>
@@ -49,9 +47,9 @@
                         <div class="comment-heading">
                           <h4 class="user"><?php
                                 if($ans->User->rol == '1'){
-                                	echo "Dr";
+                                  echo "Dr";
                                 }else{
-                                	echo "";
+                                  echo "";
                                 }
                               ?>
                               {{$ans->User->name}}</h4>
@@ -68,53 +66,36 @@
 
                 </div>
               </div> <!-- postwell -->
-
-		         @endforeach
-
-                <!-- matrials -->
-		         @foreach ($subject->matrial as $matrial)
+            <!-- end of ask quetion post -->
+            @endforeach
 
 
-		         <div class="panel panel-white post panel-shadow"> <!-- postwell -->
-                <div class="post-heading">
-                  <div class="pull-left image">
-                    <img src="http://bootdey.com/img/Content/user_1.jpg" class="img-circle avatar" alt="user profile image">
-                  </div>
-                  <div class="pull-left meta">
-                  <div class="title h5">
-                      <a href="#"><b>Dr/{{$matrial->User->name}}</b></a>
-                      Uplad new lecture in <span class="download">{{$subject->name}}</span>
-                    </div>
-                    
-                    <h6 class="text-muted time">{{$matrial->created_at->diffForHumans()}}</h6>
-                  </div>
-                </div> 
-                <div class="post-description"> 
-                  
-                  <div class="stats">
-                    <a href="#" class="btn btn-default stat-item">
-                      <i class="fa fa-thumbs-up icon"></i>2
-                    </a>
-                    <a href="#" class="btn btn-default stat-item">
-                      <i class="fa fa-share icon"></i>12
-                    </a>
-                    <a href="{{$matrial->attachfile}}" class="btn btn-default stat-item">
-                      <i class="fa fa-cloud-download"></i>
-                    </a>
-                    
-                  </div>
+
+          </div>   <!-- tab 1 end -->
+
+
+         <!-- tab 2 -->
+          <div class="col-sm-10 col-sm-offset-1 tab-pane fade in" id="tab2">
+                  my friends over here
+
+
+            </div>   <!-- Question posts upload tab 2 -->
+           
+
+            <!-- about doctoure -->
+            <div class="col-sm-10 col-sm-offset-1 tab-pane fade in" id="tab4">
+                <div class="row" style="background: #fff; border-radius: 15px; padding: 10px;">
+                  <h1>name:-{{$user->name}}</h1>
+                  <h4>email:-{{$user->email}}</h4>
+                  <h4>{{$user->student->stage_id}} nd @ {{$user->student->faculty->name}}</h4>
+                  <ul>
+                  @foreach($user->student->stage->subject as $sub)
+                  <li>{{$sub->name}}</li>
+                  @endforeach
+                  </ul>
+
                 </div>
-                
-              </div> <!-- postwell -->
-		        
-		         @endforeach
-		         <!-- end matrilas -->
+            </div>
+            <!-- end of about doctore-->
 
-		        @endforeach
-
-
-
-              <!-- end of ask quetion post -->
-              </div>
-              </div>
-
+        </div> <!-- end tab conten -->

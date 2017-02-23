@@ -40,4 +40,14 @@ class User extends Authenticatable
     {
             return $this->hasMany(matrial::class);
     }
+    public function student()
+    {
+        return $this->hasOne(student::class);
+    }
+
+    public function follower()
+    {
+        return $this->hasMany('App\follower', 'thefollower');
+    }
+     
 }

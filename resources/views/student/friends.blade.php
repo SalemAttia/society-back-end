@@ -5,12 +5,14 @@
 @section('css')
 
 @include('partials.homecss')
+ <link href="{{asset('css/friends.css')}}" rel="stylesheet">
 
 @endsection
 
 @section('content')
 
-  home contant here
+@include('partials.friends')
+ 
 @endsection
 @section('js')
 @include('partials.homejs')

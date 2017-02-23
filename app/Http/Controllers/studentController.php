@@ -34,17 +34,27 @@ class studentController extends Controller
 
     public function profile()
     {
-        return view('student.profile');
+        $user = \Auth::user();
+       
+        //get subjects of this stages
+        $questions = quetion::with('User','User.student.stage.subject','answer','answer.User','subject')->where('user_id', $user->id)->get();
+        
+        return view('student.profile',compact('user','questions'));
     }
 
      public function groups()
     {
+
         return view('student.groups');
     }
 
      public function friends()
     {
-        return view('student.friends');
+        $user = \Auth::user();
+       // $stage_id = DB::table('follower')->where('user_id', $auth_id)->select('thefollower')->with('user','')->get();
+        
+        $followers = User::with('follower','follower.user','follower.user.student.stage')->where('id',$user->id)->get();
+        return view('student.friends',compact('followers'));
     	
     }
 

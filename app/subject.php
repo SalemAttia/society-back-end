@@ -17,4 +17,9 @@ class subject extends Model
     {
     		return $this->hasMany(matrial::class);
     }
+
+    public function stage()
+    {
+    		return $this->belongsTo(stage::class);
+    }
 }

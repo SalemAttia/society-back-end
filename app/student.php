@@ -6,5 +6,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class student extends Model
 {
-    //
+     public function User()
+    {
+        return $this->hasOne(User::class);
+    }
+    public function faculty()
+    {
+        return $this->belongsTo('App\faculty', 'faclaty_id');
+    }
+
+     public function stage()
+    {
+    		return $this->belongsTo(stage::class);
+    }
 }

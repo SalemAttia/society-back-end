@@ -50,7 +50,8 @@
                <img src="images/loginpage/one.jpg">
         
                <h4 style="text-align: center;">{{Auth::user()->name}}</h4>
-               <p>4th stage</p>
+               <p style="">{{Auth::user()->student->stage_id}} stage
+              </p>
 
                <button class="btn btn-default">Student</button>
              </li>

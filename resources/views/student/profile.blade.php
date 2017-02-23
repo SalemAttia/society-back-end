@@ -7,8 +7,8 @@
 @endsection
 
 @section('content')
-
-  profile
+@include('partials.profilehead')
+@include('partials.profilesections')
 @endsection
 @section('js')
 @include('partials.homejs')
