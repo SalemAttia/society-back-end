@@ -11,9 +11,15 @@ class faculty extends Model
             return $this->hasMany(student::class);
     }
 
+     public function doctor()
+    {
+            return $this->hasMany(student::class);
+    }
+
     public function User()
     {
          return $this->hasMany(User::class);
     }
+
 
 }

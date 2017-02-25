@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class student extends Model
 {
-     public function User()
+     public function user()
     {
-        return $this->hasOne(User::class);
+        return $this->belongsTo(User::class);
     }
     public function faculty()
     {

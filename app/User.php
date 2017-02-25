@@ -49,5 +49,13 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\follower', 'thefollower');
     }
+    public function doctor()
+    {
+        return $this->hasOne(doctor::class);
+    }
+   public function stage()
+    {
+            return $this->belongsTo(stage::class);
+    }
      
 }

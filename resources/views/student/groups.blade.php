@@ -3,14 +3,13 @@
 <?php $title = "Groups";?>
 @endsection
 @section('css')
-
-@include('partials.homecss')
+  <link href="{{asset('css/group-maincontent.css')}}" rel="stylesheet">
 
 @endsection
 
 @section('content')
-
-  home contant here
+@include('partials.groups')
+  
 @endsection
 @section('js')
 @include('partials.homejs')

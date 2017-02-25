@@ -4,12 +4,12 @@
 @endsection
 @section('css')
 
- <link href="{{asset('css/notification.css')}}" rel="stylesheet">
+ <link href="{{asset('css/single.css')}}" rel="stylesheet">
 @endsection
 
 @section('content')
 
-@include('partials.askedqetion')
+@include('partials.singlequestion')
  
 @endsection
 @section('js')

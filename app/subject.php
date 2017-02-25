@@ -22,4 +22,10 @@ class subject extends Model
     {
     		return $this->belongsTo(stage::class);
     }
+
+     public function group()
+    {
+        return $this->hasOne(group::class);
+    }
+
 }

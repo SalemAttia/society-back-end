@@ -3,7 +3,7 @@
 <?php $title = "Profile";?>
 @endsection
 @section('css')
- <link href="css/profile.css" rel="stylesheet">
+ <link href="{{asset('css/profile.css')}}" rel="stylesheet">
 @endsection
 
 @section('content')

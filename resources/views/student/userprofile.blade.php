@@ -1,16 +1,14 @@
 @extends('layouts.student')
 @section('title')
-<?php $title = "Questions";?>
+<?php $title = "Profile";?>
 @endsection
 @section('css')
-
- <link href="{{asset('css/notification.css')}}" rel="stylesheet">
+ <link href="{{asset('css/profile.css')}}" rel="stylesheet">
 @endsection
 
 @section('content')
-
-@include('partials.askedqetion')
- 
+@include('partials.profileuserhead')
+@include('partials.profilesections')
 @endsection
 @section('js')
 @include('partials.homejs')
