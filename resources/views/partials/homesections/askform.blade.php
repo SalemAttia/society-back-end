@@ -1,13 +1,25 @@
 
+            @if(count($errors)>0)
+             <div class="row" style="padding: 20px;">
+                <div class="alert alert-danger">
+                  <ul>
+                  @foreach($errors->all() as $error)
+                    <li>{{$error}}</li>
+                    @endforeach
+                  </ul>
+                  
+                </div>
+             </div>
+             @endif
               <div class="row" style="padding-left: 30px;">  <!-- row -->
                 <!-- saidbar content -->
                 <div class="well col-md-4">
                  7 Feb 2017 
                  <hr>
                  <ul class="nav nav-pills nav-stacked">
-                  <li role="presentation" title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Question asked this day"><a href="#"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> Questions </a></li>
-                  <li role="presentation"  data-toggle="tooltip" data-placement="bottom" data-original-title="File uploads this day"><a href="#"><span class="glyphicon glyphicon-open" aria-hidden="true"></span> Uploads</a></li>
-                  <li role="presentation"  data-toggle="tooltip" data-placement="bottom" data-original-title="all actions in your Groups"><a href="#"><span class="fa fa-users" aria-hidden="true"></span> Groups</a></li>
+                  <li role="presentation" title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Question asked this day"><a href="{{url('questions')}}"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> Questions </a></li>
+                  <li role="presentation"  data-toggle="tooltip" data-placement="bottom" data-original-title="File uploads this day"><a href="{{url('uploads')}}"><span class="glyphicon glyphicon-open" aria-hidden="true"></span> Uploads</a></li>
+                  <li role="presentation"  data-toggle="tooltip" data-placement="bottom" data-original-title="all actions in your Groups"><a href="{{url('groups')}}"><span class="fa fa-users" aria-hidden="true"></span> Groups</a></li>
 
                 </ul>
               </div>
@@ -18,11 +30,14 @@
                 <div class="row">
                   <div class="widget-area no-padding blank">
                     <div class="status-upload">
-                      <form style="box-shadow: rgba(0, 0, 0, 0.1) 3px 3px 3px 3px;padding-bottom: 10px;">
-                        <textarea placeholder="What is your Question?" ></textarea>
+                      <form id="askform" method="post" action="{{ url('/ask') }}" style="box-shadow: rgba(0, 0, 0, 0.1) 3px 3px 3px 3px;padding-bottom: 10px;">
+
+                         {{ csrf_field() }}
+                         <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+                        <textarea name="body" placeholder="What is your Question?" ></textarea>
                         <ul>
                           <li>
-                           <select class="form-control filedselect" title="" data-toggle="tooltip" data-placement="bottom" data-original-title="select filed" >
+                           <select name="subject_id" class="form-control filedselect" title="" data-toggle="tooltip" data-placement="bottom" data-original-title="select filed" >
                            @foreach ($subjects as $subject)
                             <option value="{{$subject->id}}">{{$subject->name}}</option>
                             
@@ -33,8 +48,10 @@
 
 
                       </ul>
-                      <button type="submit" class="btn btn-success green"><i class="fa fa-share"></i> Ask</button>
+                      <button onclick="event.preventDefault(); document.getElementById('askform').submit();" class="btn btn-success green"><i class="fa fa-share"></i> Ask</button>
+
                     </form>
+                    
                   </div><!-- Status Upload  -->
                 </div><!-- Widget Area -->
               </div>

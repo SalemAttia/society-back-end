@@ -1,9 +1,25 @@
 
          <!-- head of profile  -->
            <div class="row panel">
-            <div class="col-md-4 bg_blur ">
-                <a href="follow/{{$user->name}}"" class="follow_btn hidden-xs">Follow</a>
-              
+           
+             <div class="col-md-4 bg_blur">
+                     <form action="{{ url('follow')}}" method="post" id="follow">
+                     {{ csrf_field() }}
+                       <input type="hidden" name="thefollower" value="{{\Auth::user()->id}}">
+                       <input type="hidden" name="user_id" value="{{$user->id}}">
+                     </form>
+
+                 
+                 
+                      
+                      @if ($ifollow == '1') 
+                       
+                      @else
+                      <button onclick="event.preventDefault(); document.getElementById('follow').submit();" class="follow_btn hidden-xs">Follow</button>
+                      @endif
+                     
+               
+                
             </div>
             <div class="col-md-8  col-xs-12">
              <img src="http://lorempixel.com/output/people-q-c-100-100-1.jpg" class="img-thumbnail picture hidden-xs" />

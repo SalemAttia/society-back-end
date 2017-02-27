@@ -48,13 +48,17 @@
      <!-- ask Question in the group -->
      <div class="widget-area no-padding blank">
       <div class="status-upload">
-        <form action="{{$group->subject->id}}" method="post" style="box-shadow: rgba(0, 0, 0, 0.1) 3px 3px 3px 3px;padding-bottom: 10px;">
-          <textarea placeholder="What is your Question?" ></textarea>
+        <form id="askformingroup" method="post" action="{{ url('/ask') }}"  method="post" style="box-shadow: rgba(0, 0, 0, 0.1) 3px 3px 3px 3px;padding-bottom: 10px;">
+         {{ csrf_field() }}
+          <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+           <textarea name="body" placeholder="What is your Question?" ></textarea>
+          <input type="hidden" name="subject_id" value="{{$group->subject->id}}">
           <ul>
 
 
           </ul>
-          <button type="submit" class="btn btn-success green"><i class="fa fa-share"></i> Ask</button>
+           <button onclick="event.preventDefault(); document.getElementById('askformingroup').submit();" class="btn btn-success green"><i class="fa fa-share"></i> Ask</button>
+
         </form>
       </div><!-- Status Upload  -->
     </div><!-- Widget Area -->

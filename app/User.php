@@ -57,5 +57,10 @@ class User extends Authenticatable
     {
             return $this->belongsTo(stage::class);
     }
+    public function subject()
+    {
+            return $this->belongsToMany(subject::class,'has_subjects');
+    }
+
      
 }

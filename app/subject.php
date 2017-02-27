@@ -27,5 +27,9 @@ class subject extends Model
     {
         return $this->hasOne(group::class);
     }
+      public function doctor()
+    {
+        return $this->belongsToMany(doctor::class,'has_subjects');
+    }
 
 }

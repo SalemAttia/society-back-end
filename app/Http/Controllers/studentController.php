@@ -19,6 +19,9 @@ use App\quetion;
 use App\stage;
 use App\student;
 use App\subject;
+use App\Http\Requests\askform;
+use App\Http\Requests\answerquestion;
+use App\Http\Requests\followerforme;
 
 class studentController extends Controller
 {
@@ -38,8 +41,15 @@ class studentController extends Controller
        
         //get subjects of this stages
         $questions = quetion::with('User','User.student.stage.subject','answer','answer.User','subject')->where('user_id', $user->id)->get();
+
+             //people who follow me  --- they follow doctor
+               $followers = follower::with('user','user.student.stage')->where('thefollower',$user->id)->select('user_id')->get();
+                 $userfollow = array();
+                 foreach ($followers as $follower) {
+                   $userfollow[] = User::with('student','student.stage','doctor')->where('id',$follower->user_id)->get(); 
+                 }
         
-        return view('student.profile',compact('user','questions'));
+        return view('student.profile',compact('user','questions','userfollow'));
     }
     public function userprofile($id)
     {
@@ -47,11 +57,55 @@ class studentController extends Controller
         //get subjects of this stages
         if ($user->rol == '2') {
              $questions = quetion::with('User','User.student.stage.subject','answer','answer.User','subject')->where('user_id', $id)->get();
+             // i follow this people
+
+             //people who follow me  --- they follow doctor
+               $followers = follower::with('user','user.student.stage')->where('thefollower',$id)->select('user_id')->get();
+                 $userfollow = array();
+                 foreach ($followers as $follower) {
+                   $userfollow[] = User::with('student','student.stage','doctor')->where('id',$follower->user_id)->get(); 
+                 }
+
+                //i follow he
+               $followering = follower::with('user','user.student.stage')->where('thefollower',\Auth::user()->id)->select('*')->get();
+                 $userfollowing = array();
+                 foreach ($followering as $followering) {
+                   $userfollowing[] = User::with('doctor')->where('id',$followering->user_id)->get(); 
+                 }
+                if($userfollowing){
+                 foreach($userfollowing as $following){
+                   if ($following[0]['id'] == $id) {
+                       $ifollow = 1;
+                   }else{
+                      $ifollow = 0;
+                   }
+                   
+                 }
+             }else{
+                $ifollow = 0;
+             }
+
+                 
+
         
-              return view('student.userprofile',compact('user','questions'));
+              return view('student.userprofile',compact('user','questions','userfollow','userfollowing','ifollow'));
         }else{
-             $user = User::find($id);
-              return view('student.docprofile',compact('user'));
+             $user = User::with('subject','answer','answer.quetion','answer.quetion.User','doctor')->where('id',$id)->get();
+             
+               $matrials = matrial::with('subject')->where('user_id', $id)->get();
+                
+                //people who follow me  --- they follow doctor
+               $followers = follower::with('user','user.student.stage')->where('user_id',$id)->select('thefollower')->get();
+                 $userfollower = array();
+                 foreach ($followers as $follower) {
+                   $userfollower[] = User::with('student','student.stage')->where('id',$follower->thefollower)->get(); 
+                 }
+
+                 
+              
+
+
+               return view('student.docprofile',compact('user','matrials','userfollower'));
         }
        
     }
@@ -136,8 +190,80 @@ class studentController extends Controller
 
     }
 
+    public function store(askform $request)
+    {
+        quetion::create($request->all());
+
+        return redirect()->back();
+       
+    }
+    public function postanswer(answerquestion $request)
+    {
+        answer::create($request->all());
+
+        return redirect()->back();
+    }
+
+    public function uploads()
+    {
+        // user login
+        $auth_id = \Auth::user()->id;  
+        //stage_id
+            $stage_id = DB::table('students')->where('user_id', $auth_id)->select('stage_id')->get();
+            $stage_id = $stage_id[0]->stage_id;
+           
+            //get subjects of this stages
+            $subjects = subject::with('question','question.User','question.answer','question.answer.User','matrial','matrial.User')->where('stage_id',$stage_id)->get();
+            // return
+            return view('student.uploads',compact('subjects'));
+
+    }
+
+    public function follow(followerforme $request)
+    {
+      follower::create($request->all());
+
+        return redirect()->back();  
+    }
+
       public function setting()
     {
-      echo "string";	
+         $user = \Auth::user();
+         if ($user->rol == 2) {
+         $data = DB::table('students')->where('user_id', $user->id)->select('*')->get();
+            
+         }else{
+         $data = DB::table('doctor')->where('user_id', $user->id)->select('*')->get();
+
+         }
+       
+       return view('student.setting',compact('user','data'));
+      
     }
+
+    public function update(Request $request,$id)
+    {
+         
+           DB::table('users')
+            ->where('id', $id)
+            ->update(['name' => $request->name,'email' => $request->email,'password' => bcrypt($request->password)]);
+
+        return back();
+    }
+    public function updatequestion($id)
+    {
+         $question = quetion::with('subject','User','answer','answer.User')->where('id',$id)->get();
+
+        return view('student.singleQuestionedit',compact('question'));
+    }
+    public function updatethisQuestion(Request $request,$id)
+    {
+         
+           DB::table('quetions')
+            ->where('id', $id)
+            ->update(['body' => $request->body]);
+
+        return back();
+    }
+
 }

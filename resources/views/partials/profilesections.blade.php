@@ -16,7 +16,8 @@
                       <a href="#"><b>{{$question->User->name}}</b></a>
                       Ask Question in <span class="quetion">{{$question->subject->name}}</span>
                     </div>
-                    <h6 class="text-muted time">{{$question->created_at->diffForHumans()}}</h6>
+                      
+                    <h6 class="text-muted time">{{$question->created_at->diffForHumans()}} </h6>
                   </div>
                 </div> 
                 <div class="post-description"> 
@@ -28,15 +29,26 @@
                     <a href="#" class="btn btn-default stat-item">
                       <i class="fa fa-share icon"></i>12
                     </a>
+                    <a href="updatequestion/{{$question->id}}" class="pull-right btn btn-info">Edit</a>
                   </div>
                 </div>
                 <div class="post-footer">
+                  <form method="post" action="{{ url('/answer') }}">
                   <div class="input-group"> 
-                    <input class="form-control" placeholder="Add a comment" type="text">
+                 
+                   {{ csrf_field() }}
+                    <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+                    <input type="hidden" name="quetion_id" value="{{$question->id}}">
+                    <input name="body" class="form-control" placeholder="Add a comment" type="text">
                     <span class="input-group-addon">
-                      <a href="#"><i class="fa fa-edit"></i></a>  
+                      <button type="submit"><i class="fa fa-edit"></i></button>  
                     </span>
+                    
+                 
+                    
+
                   </div>
+                   </form>
                    @foreach ($question->answer as $ans)
                   <ul class="comments-list">
                     <li class="comment">
@@ -76,9 +88,27 @@
 
          <!-- tab 2 -->
           <div class="col-sm-10 col-sm-offset-1 tab-pane fade in" id="tab2">
-                  my friends over here
+                 <!-- who follow the doctor -->
+              <ul>
+
+                 @foreach($userfollow as $following)
+                  <li>
+                     {{$following[0]->name}}
+                     {{$following[0]->id}}
+                     -rol-{{$following[0]->rol}}
+                     
+                     @foreach($following as $s)
+                      
+                     {{$s->student['stage_id']}}
+                     @endforeach
+                    
 
 
+                     
+                  </li>
+
+               @endforeach
+              </ul>
             </div>   <!-- Question posts upload tab 2 -->
            
 

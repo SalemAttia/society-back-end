@@ -21,5 +21,15 @@ Route::get('/notification','studentController@notification');
 Route::get('/questions','studentController@questions');
 Route::get('/setting','studentController@setting');
 Route::get('/question/{id}','studentController@singleQuestion');
+Route::post('/ask','studentController@store');
+Route::post('/answer','studentController@postanswer');
 Route::get('/profile/{id}','studentController@userprofile');
+Route::get('/uploads','studentController@uploads');
+Route::post('/follow','studentController@follow');
+Route::patch('/update/{id}','studentController@update');
+
+Route::get('/updatequestion/{id}','studentController@updatequestion');
+Route::patch('/updatethisQuestion/{id}',[
+	'uses' => 'studentController@updatethisQuestion',
+	'as' => 'updatethisQuestion']);
 Route::auth();

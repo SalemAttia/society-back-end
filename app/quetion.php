@@ -9,6 +9,13 @@ use App\answer;
 
 class quetion extends Model
 {
+    protected $fillable = [
+      'user_id',
+      'body',
+      'subject_id'
+
+    ];
+
     public function subject()
     {
     	return $this->belongsTo(subject::class);

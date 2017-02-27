@@ -27,12 +27,22 @@
                   </div>
                 </div>
                 <div class="post-footer">
+                  <form method="post" action="{{ url('/answer') }}">
                   <div class="input-group"> 
-                    <input class="form-control" placeholder="Add a comment" type="text">
+                 
+                   {{ csrf_field() }}
+                    <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+                    <input type="hidden" name="quetion_id" value="{{$question->id}}">
+                    <input name="body" class="form-control" placeholder="Add a comment" type="text">
                     <span class="input-group-addon">
-                      <a href="#"><i class="fa fa-edit"></i></a>  
+                      <button type="submit"><i class="fa fa-edit"></i></button>  
                     </span>
+                    
+                 
+                    
+
                   </div>
+                   </form>
                    @foreach ($question->answer as $ans)
                   <ul class="comments-list">
                     <li class="comment">

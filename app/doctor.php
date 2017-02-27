@@ -14,6 +14,10 @@ class doctor extends Model
     {
         return $this->belongsTo('App\faculty', 'faclaty_id');
     }
+     public function subject()
+    {
+            return $this->belongsToMany(subject::class,'has_subjects');
+    }
 
   
      
