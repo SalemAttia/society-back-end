@@ -56,38 +56,59 @@ class PagesController extends Controller
             $stage_id = $stage_id[0]->stage_id;
            
             //get subjects of this stages
-            $subjects = subject::with('question','question.User','question.answer','question.answer.User','matrial','matrial.User')->where('stage_id',$stage_id)->get();
+            $subjects = subject::with('question','question.User','question.answer','question.subject','question.answer.User','matrial','matrial.User')->where('stage_id',$stage_id)->get();
             
-           //$subjects = subject::find(1);       
-            //get leatest 5 Quetions and leatest 5 news
-           // $allsub = array();
-           //  $newfeeds = array();
-           //  $users = array();
 
-           // $newfeeds = array();
-           //  foreach ($subjects as $subject ) {
-           //    $allsubjects = $subject->id;
-           //    $a =  subject::find($allsubjects);
-           //    $newfee $a->withCount('question')->get();
-              
-           //  }
-           //  return $newfeeds[0];
-           //return dd($newfeeds);
-           //  return $newfeeds[0][1]->user_id;
+            //count number of question and matrial in all subjects he sigin for
+            $matrials = array();
+            $questions = array();
 
+            $numquestion = 0; $nummatrial = 0;
+            foreach ($subjects as $subject) {
+             
+                $numquestion = $numquestion + $subject->question->count();
+                 
+                $nummatrial =  $nummatrial + $subject->matrial->count();
+
+                foreach ($subject->question as $questio) {
+                  array_push($questions, $questio);
+                }
+
+
+            }
+
+             foreach ($subjects as $subject) {
+             
+                foreach ($subject->matrial as $matrial) {
+                  array_push($matrials, $matrial);
+                }
+            }
+
+            usort($questions, function($a,$b){
+               return $a->created_at < $b->created_at;
+            });
+
+            usort($matrials, function($a,$b){
+               return $a->created_at < $b->created_at;
+            });
+
+            // $newfeeds = array();
+            // array_push($newfeeds, $matrials);
+            // array_push($newfeeds, $questions);
+            
+            //  usort($newfeeds, function($a,$b){
+            //    return $a[0]->created_at > $b[0]->created_at;
+            // });
            
+            //return $newfeeds;
 
-            // $posts = subject::withCount('question')->get();
-            // foreach ($posts as $post) {
-            //         echo $post->question_count;
-            //     }
-           // return $posts;
+          
 
-
-        	//student
-
-        	return view('student.home',compact('subjects'));
+              
+        	return view('student.home',compact('subjects','nummatrial','numquestion','questions','matrials'));
         }
     	
     }
 }
+
+
