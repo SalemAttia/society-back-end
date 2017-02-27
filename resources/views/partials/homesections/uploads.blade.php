@@ -4,8 +4,8 @@
 
             <div class="col-sm-10 col-sm-offset-1">
   <!-- matrials -->
-          @foreach($subjects as $subject)
-		         @foreach ($subject->matrial as $matrial)
+
+		         @foreach ($uploads as $matrial)
 
 
 		         <div class="panel panel-white post panel-shadow"> <!-- postwell -->
@@ -16,7 +16,7 @@
                   <div class="pull-left meta">
                   <div class="title h5">
                       <a href="#"><b>Dr/{{$matrial->User->name}}</b></a>
-                      Uplad new lecture in <span class="download">{{$subject->name}}</span>
+                      Uplad new lecture in <span class="download">{{$matrial->subject->name}}</span>
                     </div>
                     
                     <h6 class="text-muted time">{{$matrial->created_at->diffForHumans()}}</h6>
@@ -43,6 +43,5 @@
 		         @endforeach
 		         <!-- end matrilas -->
 
-		        @endforeach
             </div>
             </div>

@@ -73,6 +73,7 @@ class PagesController extends Controller
                 foreach ($subject->question as $questio) {
                   array_push($questions, $questio);
                 }
+                
 
 
             }

@@ -3,8 +3,8 @@
 <h4>see all Question asked for today</h4>
 
 <!-- notification -->
-@foreach($subjects as $subject)
-@foreach($subject->question as $question)
+
+@foreach($questions as $question)
 
 <a href="question/{{$question->id}}">
   <div class="row panel panel-white post panel-shadow"> <!-- postwell -->
@@ -30,5 +30,5 @@
 </a>
 <div class="clearfix"></div>
 @endforeach
-@endforeach
+
 </div>

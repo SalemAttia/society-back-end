@@ -40,7 +40,7 @@ class studentController extends Controller
         $user = \Auth::user();
        
         //get subjects of this stages
-        $questions = quetion::with('User','User.student.stage.subject','answer','answer.User','subject')->where('user_id', $user->id)->get();
+        $questions = quetion::with('User','User.student.stage.subject','answer','answer.User','subject')->where('user_id', $user->id)->orderBy('created_at', 'desc')->get();
 
              //people who follow me  --- they follow doctor
                $followers = follower::with('user','user.student.stage')->where('thefollower',$user->id)->select('user_id')->get();
@@ -56,7 +56,7 @@ class studentController extends Controller
         $user = User::find($id);
         //get subjects of this stages
         if ($user->rol == '2') {
-             $questions = quetion::with('User','User.student.stage.subject','answer','answer.User','subject')->where('user_id', $id)->get();
+             $questions = quetion::with('User','User.student.stage.subject','answer','answer.User','subject')->where('user_id', $id)->orderBy('created_at', 'desc')->get();
              // i follow this people
 
              //people who follow me  --- they follow doctor
@@ -131,16 +131,16 @@ class studentController extends Controller
          $group = group::with('subject')->where('id',$id)->get();
          
 
-         $students = student::with('user')->where('stage_id', $group[0]->subject->stage_id)->get();
+         $students = student::with('user')->where('stage_id', $group[0]->subject->stage_id)->orderBy('created_at', 'desc')->get();
 
 
            
        //get quetion for this group depand on subject
-         $questions = quetion::with('User','User.student.stage.subject','answer','answer.User','subject','subject.stage')->where('subject_id', $group[0]->subject->id)->get();
+         $questions = quetion::with('User','User.student.stage.subject','answer','answer.User','subject','subject.stage')->where('subject_id', $group[0]->subject->id)->orderBy('created_at', 'desc')->get();
         
         
 
-         $matrials = matrial::with('User','subject')->where('subject_id', $group[0]->subject->id)->get();
+         $matrials = matrial::with('User','subject')->where('subject_id', $group[0]->subject->id)->orderBy('created_at', 'desc')->get();
         
         //return  $matrial;
         return view('student.group',compact('group','questions','matrials','students'));
@@ -151,7 +151,7 @@ class studentController extends Controller
         $user = \Auth::user();
        // $stage_id = DB::table('follower')->where('user_id', $auth_id)->select('thefollower')->with('user','')->get();
         
-        $followers = User::with('follower','follower.user','follower.user.student.stage')->where('id',$user->id)->get();
+        $followers = User::with('follower','follower.user','follower.user.student.stage')->where('id',$user->id)->orderBy('created_at', 'desc')->get();
         return view('student.friends',compact('followers'));
     	
     }
@@ -174,10 +174,21 @@ class studentController extends Controller
             $stage_id = $stage_id[0]->stage_id;
            
             //get subjects of this stages
-            $subjects = subject::with('question','question.User','question.answer','question.answer.User','matrial','matrial.User')->where('stage_id',$stage_id)->get();
+            $questions = array();
+            $subjects = subject::with('question','question.User','question.answer','question.answer.User','matrial','matrial.User')->where('stage_id',$stage_id)->orderBy('created_at', 'desc')->get();
+               foreach ($subjects as $subject) {
+                foreach ($subject->question as $questio) {
+                  array_push($questions, $questio);
+                }
 
+
+
+            }
+            usort($questions, function($a,$b){
+               return $a->created_at < $b->created_at;
+            });
         
-    	return view('student.questions',compact('subjects'));
+    	return view('student.questions',compact('subjects','questions'));
     }
 
     public function singleQuestion($id)
@@ -212,10 +223,22 @@ class studentController extends Controller
             $stage_id = DB::table('students')->where('user_id', $auth_id)->select('stage_id')->get();
             $stage_id = $stage_id[0]->stage_id;
            
-            //get subjects of this stages
-            $subjects = subject::with('question','question.User','question.answer','question.answer.User','matrial','matrial.User')->where('stage_id',$stage_id)->get();
-            // return
-            return view('student.uploads',compact('subjects'));
+           //get subjects of this stages
+            
+
+            $subjects = subject::with('matrial','matrial.User')->where('stage_id',$stage_id)->get();
+               $uploads = array();
+               foreach ($subjects as $subject) {
+                foreach ($subject->matrial as $upload) {
+                  array_push($uploads, $upload);
+                }
+
+            }
+            usort($uploads, function($a,$b){
+               return $a->created_at < $b->created_at;
+            });
+
+            return view('student.uploads',compact('subjects','uploads'));
 
     }
 
