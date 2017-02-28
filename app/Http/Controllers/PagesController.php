@@ -46,8 +46,18 @@ class PagesController extends Controller
         	return view('admins.dashbord');
         }
         else if ($rol == '1') {
-        	//doctor
-        	return view('doctors.home');
+
+
+            $subjects = hasSubject::with('subject','subject.matrial','subject.question','doctor')->where('user_id',$auth_id)->get();
+            $numquestion = 0; $nummatrial = 0;
+            foreach ($subjects as $subject) {
+               
+                $numquestion = $numquestion + $subject->subject->question->count();
+                 
+                $nummatrial =  $nummatrial + $subject->subject->matrial->count();
+            }
+
+        	return view('doctors.home',compact('subjects','numquestion','nummatrial'));
         }
         else{
 
@@ -93,18 +103,7 @@ class PagesController extends Controller
                return $a->created_at < $b->created_at;
             });
 
-            // $newfeeds = array();
-            // array_push($newfeeds, $matrials);
-            // array_push($newfeeds, $questions);
-            
-            //  usort($newfeeds, function($a,$b){
-            //    return $a[0]->created_at > $b[0]->created_at;
-            // });
            
-            //return $newfeeds;
-
-          
-
               
         	return view('student.home',compact('subjects','nummatrial','numquestion','questions','matrials'));
         }

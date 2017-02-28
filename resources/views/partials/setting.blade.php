@@ -1,5 +1,5 @@
 <div class="row" style="padding: 60px; background: #fff;">
- <h2>update your data as student</h2>
+ <h2 style="text-align: center;">update your data</h2>
  <div class="form" style="width: 400px; margin: auto;">
  	      <form method="POST" action="update/{{$user->id}}">
  	      <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -17,7 +17,7 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">password</label>
-                    <input type="password" name="password" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                    <input type="password" value="" name="password" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
                 </div>
 
                 <button type="submit" class="btn btn-success btn-block">Update</button>

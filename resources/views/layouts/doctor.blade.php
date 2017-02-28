@@ -58,29 +58,36 @@
             <li class="sidebar-brand">
 
              <img src="images/loginpage/one.jpg">
-             <h3>salem attia</h3>
-             <p>Dr-fci_minia</p>
-
+            <h4 style="text-align: center;">Dr/{{Auth::user()->name}}</h4>
+            
              <button class="btn btn-default">Doctor</button>
            </li>
 
            <li class="<?php $page =  $title; if ($page == 'Home') {echo 'active_l';}?>">
-             <a href="3.doctorhome.html"><i class="fa fa-home adminside"></i>Home</a>
+             <a href="{{ url('/') }}"><i class="fa fa-home adminside"></i>Home</a>
            </li>
            <li class="<?php $page =  $title; if ($page == 'Profile') {echo 'active_l';}?>">
-             <a href="3.doctorprofile.html"><i class="fa fa-user adminside"></i>Profile</a>
+             <a href="{{ url('/profile') }}"><i class="fa fa-user adminside"></i>Profile</a>
            </li>
-           <li class="<?php $page =  $title; if ($page == 'Message') {echo 'active_l';}?>"><a href="3.doctormessage.html"><i class="fa fa-envelope adminside"></i>Message</a></li>
+           <li class="<?php $page =  $title; if ($page == 'Message') {echo 'active_l';}?>"><a href="{{ url('/masseges') }}"><i class="fa fa-envelope adminside"></i>Message</a></li>
 
-           <li class="<?php $page =  $title; if ($page == 'Questions') {echo 'active_l';}?>"><a href="3.doctorQuestions.html"><i class="glyphicon glyphicon-question-sign adminside"></i>Questions</a></li>
+           <li class="<?php $page =  $title; if ($page == 'Questions') {echo 'active_l';}?>"><a href="{{ url('/questiontoanswer') }}"><i class="glyphicon glyphicon-question-sign adminside"></i>Questions</a></li>
            <li class="<?php $page =  $title; if ($page == 'Materials') {echo 'active_l';}?>">
-             <a href="3.doctorematrial.html"><i class="glyphicon glyphicon-file adminside"></i>Materials</a>
+             <a href="{{ url('/Materials') }}"><i class="glyphicon glyphicon-file adminside"></i>Materials</a>
 
            </li>
            <div id="sidbarfooter">
-            <a href="#" class="footicon"><i class="setting" aria-hidden="true"></i></a>
-            <a href="#" class="footicon pull-right"><i class="logout" aria-hidden="true"></i></a>
-          </div>
+            <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+              {{ csrf_field() }}
+            </form>
+            
+              <a href="{{ url('/setting') }}" class="footicon pull-right"><i class="setting" aria-hidden="true"></i> 
+              </a>
+            <a href="{{ url('/logout') }}" class="footicon" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+             <i class="logout" aria-hidden="true"></i>
+             </a>
+
+            </div>
         </ul>
 
       </div>
@@ -188,7 +195,7 @@
 
         <div class="row">
           <div class="col-md-12 maincontant">
-          @yield('contant')
+          @yield('content')
 
       </div>   <!-- Question posts -->
 

@@ -39,7 +39,8 @@ class studentController extends Controller
     {
         $user = \Auth::user();
        
-        //get subjects of this stages
+       if ($user->rol == '2') {
+           //get subjects of this stages
         $questions = quetion::with('User','User.student.stage.subject','answer','answer.User','subject')->where('user_id', $user->id)->orderBy('created_at', 'desc')->get();
 
              //people who follow me  --- they follow doctor
@@ -50,6 +51,43 @@ class studentController extends Controller
                  }
         
         return view('student.profile',compact('user','questions','userfollow'));
+       }else{
+         $questions = array();
+         $subjects = hasSubject::with('subject','subject.matrial','subject.question','subject.question.answer','subject.question.answer.User','doctor')->where('user_id',$user->id)->get();
+            $numquestion = 0; $nummatrial = 0;
+            foreach ($subjects as $subjec) {
+                  foreach ($subjec->subject->question as $question) {
+                     foreach ($question->answer as $answer) {
+                         if ($answer->User->id == $user->id) {
+                            array_push($questions, $question);
+                         }
+                      } 
+                  } 
+             
+            }
+            usort($questions, function($a,$b){
+               return $a->created_at < $b->created_at;
+            });
+
+            $user = User::with('subject','answer','answer.quetion','answer.quetion.User','doctor')->where('id',\Auth::user()->id)->get();
+
+             
+               $matrials = matrial::with('subject')->where('user_id',\Auth::user()->id)->get();
+                
+                //people who follow me  --- they follow doctor
+               $followers = follower::with('user','user.student.stage')->where('user_id',\Auth::user()->id)->select('thefollower')->get();
+                 $userfollower = array();
+                 foreach ($followers as $follower) {
+                   $userfollower[] = User::with('student','student.stage')->where('id',$follower->thefollower)->get(); 
+                 }
+
+           
+
+            return view('doctors.profile',compact('subjects','questions','numquestion','nummatrial','user','matrials','userfollower'));
+
+       }
+        
+
     }
     public function userprofile($id)
     {
@@ -92,7 +130,7 @@ class studentController extends Controller
         }else{
              $user = User::with('subject','answer','answer.quetion','answer.quetion.User','doctor')->where('id',$id)->get();
              
-               $matrials = matrial::with('subject')->where('user_id', $id)->get();
+               $matrials = matrial::with('subject')->where('user_id', $id)->orderBy('created_at', 'desc')->get();
                 
                 //people who follow me  --- they follow doctor
                $followers = follower::with('user','user.student.stage')->where('user_id',$id)->select('thefollower')->get();
@@ -100,12 +138,29 @@ class studentController extends Controller
                  foreach ($followers as $follower) {
                    $userfollower[] = User::with('student','student.stage')->where('id',$follower->thefollower)->get(); 
                  }
+                 $questions = array();
+              $subjects = hasSubject::with('subject','subject.matrial','subject.question','subject.question.answer','subject.question.answer.User','doctor')->where('user_id',$id)->get();
+            $numquestion = 0; $nummatrial = 0;
+            foreach ($subjects as $subjec) {
+                  foreach ($subjec->subject->question as $question) {
+                     foreach ($question->answer as $answer) {
+                         if ($answer->User->id == $id) {
+                            array_push($questions, $question);
+                         }
+                      } 
+                  } 
+             
+            }
+            usort($questions, function($a,$b){
+               return $a->created_at < $b->created_at;
+            });
+           
 
                  
               
 
 
-               return view('student.docprofile',compact('user','matrials','userfollower'));
+               return view('student.docprofile',compact('questions','user','matrials','userfollower'));
         }
        
     }
@@ -254,13 +309,15 @@ class studentController extends Controller
          $user = \Auth::user();
          if ($user->rol == 2) {
          $data = DB::table('students')->where('user_id', $user->id)->select('*')->get();
-            
+        
+          return view('student.setting',compact('user','data'));
+         
          }else{
-         $data = DB::table('doctor')->where('user_id', $user->id)->select('*')->get();
-
+         $data = DB::table('doctors')->where('user_id', $user->id)->select('*')->get();
+          return view('doctors.setting',compact('user','data'));
+          
          }
-       
-       return view('student.setting',compact('user','data'));
+
       
     }
 
@@ -287,6 +344,13 @@ class studentController extends Controller
             ->update(['body' => $request->body]);
 
         return back();
+    }
+    public function download($id)
+    {
+
+      $patha = 'app\uploads/'.$id;
+      $path = storage_path($patha);
+      return response()->download($path);
     }
 
 }

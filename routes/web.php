@@ -32,4 +32,16 @@ Route::get('/updatequestion/{id}','studentController@updatequestion');
 Route::patch('/updatethisQuestion/{id}',[
 	'uses' => 'studentController@updatethisQuestion',
 	'as' => 'updatethisQuestion']);
+Route::get('/download/{id}','studentController@download');
+
+
+//doctor
+
+Route::post('/uploadlecture','doctorcontroller@uploadlecture');
+Route::get('/questiontoanswer','doctorcontroller@questions');
+Route::get('/Materials','doctorcontroller@matrial');
+Route::get('/deletematrial/{matrial}','doctorcontroller@deletematrial');
+
+
+
 Route::auth();

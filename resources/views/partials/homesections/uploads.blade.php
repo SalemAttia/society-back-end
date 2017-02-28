@@ -23,7 +23,7 @@
                   </div>
                 </div> 
                 <div class="post-description"> 
-                  
+                   <p>{{$matrial->name}}</p>
                   <div class="stats">
                     <a href="#" class="btn btn-default stat-item">
                       <i class="fa fa-thumbs-up icon"></i>2
@@ -31,7 +31,7 @@
                     <a href="#" class="btn btn-default stat-item">
                       <i class="fa fa-share icon"></i>12
                     </a>
-                    <a href="{{$matrial->attachfile}}" class="btn btn-default stat-item">
+                   <a href="download/{{$matrial->attachfile}}" class="btn btn-default stat-item">
                       <i class="fa fa-cloud-download"></i>
                     </a>
                     

@@ -7,7 +7,7 @@
 
 @endsection
 
-@section('contant')
+@section('content')
+@include('partials.unansweredq')
 
-  home contant here
 @endsection

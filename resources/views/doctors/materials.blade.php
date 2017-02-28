@@ -6,7 +6,7 @@
  <link href="{{asset('css/profile.css')}}" rel="stylesheet">
 @endsection
 
-@section('contant')
-
-  home contant here
+@section('content')
+ @include('partials.matrialhead')
+ @include('partials.matrialcontent')
 @endsection

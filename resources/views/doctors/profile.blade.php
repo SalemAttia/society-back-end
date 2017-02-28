@@ -6,6 +6,7 @@
  <link href="{{asset('css/profile.css')}}" rel="stylesheet">
 @endsection
 
-@section('contant')
- main contant
+@section('content')
+  @include('partials.docownprofilehead')
+  @include('partials.docprofilesections')
 @endsection
