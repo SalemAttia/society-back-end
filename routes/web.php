@@ -42,6 +42,8 @@ Route::get('/questiontoanswer','doctorcontroller@questions');
 Route::get('/Materials','doctorcontroller@matrial');
 Route::get('/deletematrial/{matrial}','doctorcontroller@deletematrial');
 
+// admin
+Route::get('/dashbord','admaincontroller@questions');
 
 
 Route::auth();
