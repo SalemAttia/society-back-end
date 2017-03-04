@@ -4,8 +4,9 @@
 @endsection
 @section('css')
  <link href="{{asset('css/adminusers.css')}}" rel="stylesheet">
+ 
 @endsection
 
-@section('contant')
- main contant
+@section('content')
+ @include('partials.users')
 @endsection

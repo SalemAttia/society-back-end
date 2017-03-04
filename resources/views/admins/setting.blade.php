@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('title')
-<?php $title = "Questions";?>
+<?php $title = "Dashbord";?>
 @endsection
 @section('css')
  <link href="{{asset('css/admingroup.css')}}" rel="stylesheet">
@@ -8,5 +8,9 @@
 @endsection
 
 @section('content')
-@include('partials.adminquestion')
+@include('partials.setting')
+
+@endsection
+@section('js')
+@include('partials.homejs')
 @endsection

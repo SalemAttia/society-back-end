@@ -6,7 +6,6 @@
  <link href="{{asset('css/admingroup.css')}}" rel="stylesheet">
 @endsection
 
-@section('contant')
-
-  home contant here
+@section('content')
+@include('partials.adminmatrial')
 @endsection

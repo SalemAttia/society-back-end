@@ -43,7 +43,13 @@ class PagesController extends Controller
         
         if ($rol == '0') {
         	//admin
-        	return view('admins.dashbord');
+            //select all question 
+            $questioncount = quetion::get()->count();
+            $uploadcount = matrial::get()->count();
+            $userscount = User::get()->count();
+            $stages = stage::get()->all();
+            
+        	return view('admins.dashbord',compact('userscount','questioncount','uploadcount','stages'));
         }
         else if ($rol == '1') {
 

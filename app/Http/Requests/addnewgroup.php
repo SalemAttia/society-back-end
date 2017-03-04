@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class askform extends FormRequest
+class addnewgroup extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,7 +25,7 @@ class askform extends FormRequest
     {
         return [
             'subject_id' => 'required',
-            'body' => 'required|unique:quetions'
+            'name' => 'required',
         ];
     }
 }

@@ -58,33 +58,40 @@
            <li class="sidebar-brand">
 
                <img src="images/loginpage/one.jpg">
-               <h3>salem attia</h3>
+               <h3>{{Auth::user()->name}}</h3>
                <p>Fci-admin</p>
 
                <button class="btn btn-default">Admin</button>
              </li>
 
              <li class="<?php $page =  $title; if ($page == 'Dashbord') {echo 'active_l';}?>">
-               <a href="2.adminhome.html"><i class="fa fa-dashboard adminside"></i>Dashbord</a>
+               <a href="{{ url('/') }}"><i class="fa fa-dashboard adminside"></i>Dashbord</a>
              </li>
              <li class="<?php $page =  $title; if ($page == 'Users') {echo 'active_l';}?>">
 
-              <a href="2.adminusers.html"><i class="fa fa-user adminside"></i>Users</a>
+              <a href="{{ url('/Users') }}"><i class="fa fa-user adminside"></i>Users</a>
             </li>
             <li class="<?php $page =  $title; if ($page == 'Groups') {echo 'active_l';}?>">
-              <a href="2.admingroups.html"><i class="fa fa-users adminside"></i>Groups</a>
+              <a href="{{ url('/ManageGroups') }}"><i class="fa fa-users adminside"></i>Groups</a>
             </li>
             <li class="<?php $page =  $title; if ($page == 'Questions') {echo 'active_l';}?>">
-             <a href="2.adminquestion.html"><i class="glyphicon glyphicon-question-sign adminside"></i>Questions</a>
+             <a href="{{ url('/ManageQuestions') }}"><i class="glyphicon glyphicon-question-sign adminside"></i>Questions</a>
            </li>
            <li class="<?php $page =  $title; if ($page == 'Materials') {echo 'active_l';}?>">
-             <a href="2.adminmatrials.html"><i class="glyphicon glyphicon-file adminside"></i>Materials</a>
+             <a href="{{ url('/ManageMaterials') }}"><i class="glyphicon glyphicon-file adminside"></i>Materials</a>
            </li>
 
+<div id="sidbarfooter">
+            <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+              {{ csrf_field() }}
+            </form>
+            
+              <a href="{{ url('/setting') }}" class="footicon pull-right"><i class="setting" aria-hidden="true"></i> 
+              </a>
+            <a href="{{ url('/logout') }}" class="footicon" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+             <i class="logout" aria-hidden="true"></i>
+             </a>
 
-             <div id="sidbarfooter">
-              <a href="#" class="footicon"><i class="setting" aria-hidden="true"></i></a>
-              <a href="#" class="footicon pull-right"><i class="logout" aria-hidden="true"></i></a>
             </div>
           </ul>
 
@@ -193,7 +200,7 @@
 
         <div class="row">
           <div class="col-md-12 maincontant">
-          @yield('contant')
+          @yield('content')
 
       </div>   <!-- Question posts -->
 

@@ -40,7 +40,7 @@ class doctorcontroller extends Controller
   
   public function uploadlecture(uploadform $request)
     {
-         $user_id = \Auth::user()->id;
+        $user_id = \Auth::user()->id;
         $name = $request->input('name');
         $subject_id = $request->input('subject_id');
        
@@ -65,12 +65,19 @@ class doctorcontroller extends Controller
             $numquestion = 0; $nummatrial = 0; $flag = 0;
             foreach ($subjects as $subjec) {
                   foreach ($subjec->subject->question as $question) {
-                     foreach ($question->answer as $answer) {
+                    if ($question->answer->count() == 0){
+                            array_push($questions, $question);
+                        continue;
+                            
+                         }
+                         else{
+                            foreach ($question->answer as $answer) {
                          
                           if ($answer->User->id == $user_id) {
                                 $flag = 0;
                               
-                         }else{
+                         }
+                         else{
                             $flag = 1;
                          }
                       }
@@ -78,7 +85,12 @@ class doctorcontroller extends Controller
                             array_push($questions, $question);
                        }else{
                         continue;
-                       } 
+                       }
+                         } 
+                     
+                      
+
+
                   } 
              
             }
@@ -90,7 +102,7 @@ class doctorcontroller extends Controller
     }
     public function matrial()
     {
-        $matrials = matrial::with('subject')->where('user_id',\Auth::user()->id)->orderBy('created_at', 'desc')->get();
+         $matrials = matrial::with('subject')->where('user_id',\Auth::user()->id)->orderBy('created_at', 'desc')->get();
          $subjects = hasSubject::with('subject')->where('user_id',\Auth::user()->id)->get();
         return view('doctors.materials',compact('matrials','subjects'));
         

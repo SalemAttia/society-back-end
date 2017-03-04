@@ -312,10 +312,13 @@ class studentController extends Controller
         
           return view('student.setting',compact('user','data'));
          
-         }else{
+         }elseif($user->rol == 1){
          $data = DB::table('doctors')->where('user_id', $user->id)->select('*')->get();
           return view('doctors.setting',compact('user','data'));
           
+         }else{
+          $data = DB::table('admins')->where('user_id', $user->id)->select('*')->get();
+          return view('admins.setting',compact('user','data'));
          }
 
       

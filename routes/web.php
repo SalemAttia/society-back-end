@@ -43,7 +43,19 @@ Route::get('/Materials','doctorcontroller@matrial');
 Route::get('/deletematrial/{matrial}','doctorcontroller@deletematrial');
 
 // admin
-Route::get('/dashbord','admaincontroller@questions');
+Route::get('/Users','admaincontroller@Users');
+Route::get('/userdelet/{User}','admaincontroller@userdelet');
+Route::get('/deletegroup/{group}','admaincontroller@deletegroup');
+Route::get('/deletequestion/{quetion}','admaincontroller@deletequestion');
+
+
+Route::post('/addnewuser','admaincontroller@addnewuser');
+Route::get('/ManageGroups','admaincontroller@ManageGroups');
+Route::post('/addnewgroup','admaincontroller@addnewgroup');
+Route::get('/ManageQuestions','admaincontroller@ManageQuestions');
+Route::get('/ManageMaterials','admaincontroller@ManageMaterials');
+Route::post('/uploadnews','admaincontroller@uploadnews');
+
 
 
 Route::auth();

@@ -6,6 +6,6 @@
  <link href="{{asset('css/admingroup.css')}}" rel="stylesheet">
 @endsection
 
-@section('contant')
- main contant
+@section('content')
+@include('partials.groupsmaneage')
 @endsection

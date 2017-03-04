@@ -32,6 +32,11 @@ class User extends Authenticatable
             return $this->hasMany(quetion::class);
     }
 
+    public function new()
+    {
+            return $this->hasMany('App\News');
+    }
+
     public function answer()
     {
             return $this->hasMany(answer::class);
