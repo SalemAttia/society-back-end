@@ -19,6 +19,8 @@ use App\quetion;
 use App\stage;
 use App\student;
 use App\subject;
+use App\helpers;
+
 use App\Http\Requests\askform;
 use App\Http\Requests\answerquestion;
 use App\Http\Requests\followerforme;
@@ -49,6 +51,10 @@ class studentController extends Controller
                  foreach ($followers as $follower) {
                    $userfollow[] = User::with('student','student.stage','doctor')->where('id',$follower->user_id)->get(); 
                  }
+
+                 //flash
+
+                 
         
         return view('student.profile',compact('user','questions','userfollow'));
        }else{
@@ -259,6 +265,7 @@ class studentController extends Controller
     public function store(askform $request)
     {
         quetion::create($request->all());
+        flash('success','question','question created successfully');
 
         return redirect()->back();
        
@@ -330,7 +337,8 @@ class studentController extends Controller
            DB::table('users')
             ->where('id', $id)
             ->update(['name' => $request->name,'email' => $request->email,'password' => bcrypt($request->password)]);
-
+        flash('success','update','update successfully');
+        
         return back();
     }
     public function updatequestion($id)
@@ -345,7 +353,8 @@ class studentController extends Controller
            DB::table('quetions')
             ->where('id', $id)
             ->update(['body' => $request->body]);
-
+        flash('success','update','update successfully');
+        
         return back();
     }
     public function download($id)

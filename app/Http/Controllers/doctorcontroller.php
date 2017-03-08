@@ -36,7 +36,29 @@ class doctorcontroller extends Controller
     {
          $this->middleware('auth');
     }
+    
+    public function uploaduserphoto(Request $request)
+    {
+      $user_id = \Auth::user()->id;
+        $name = $request->input('name');
+        $subject_id = $request->input('subject_id');
+       
+         
+        $attachfile = $request->file('attachfile');
+       
+        $namea = time() . $attachfile->getClientOriginalName();
+        $attachfile->move('uploads/photo',$namea);
+        //$attachfile = substr($attachfile, 8);
+        $created_at = date("Y-m-d H:i:s");
+        $updated_at = date("Y-m-d H:i:s");
 
+        DB::table('matrials')->insert(
+      array('user_id' => $user_id, 'name' => $name, 'subject_id' => $subject_id, 'attachfile' => $namea,'created_at' => $created_at,'updated_at' => $updated_at));
+        flash('success','upload','lecture uploaded successfully thank you');
+        
+        return redirect()->back();
+       
+    }
   
   public function uploadlecture(uploadform $request)
     {
@@ -52,6 +74,7 @@ class doctorcontroller extends Controller
 
         DB::table('matrials')->insert(
       array('user_id' => $user_id, 'name' => $name, 'subject_id' => $subject_id, 'attachfile' => $attachfile,'created_at' => $created_at,'updated_at' => $updated_at));
+        flash('success','upload','lecture uploaded successfully thank you');
         
         return redirect()->back();
        

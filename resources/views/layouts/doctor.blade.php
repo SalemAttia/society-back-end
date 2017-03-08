@@ -19,6 +19,7 @@
 
   <link href="{{asset('css/admin.css')}}" rel="stylesheet">
   <link href="{{asset('css/font-awesome.css')}}" rel="stylesheet">
+  <link href="{{asset('css/sweetalert.css')}}" rel="stylesheet">
  
 
   <link href="{{asset('css/home.css')}}" rel="stylesheet">
@@ -227,6 +228,8 @@
 <script src="{{asset('js/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('js/dataTables.bootstrap.min.js')}}"></script>
 <script src="{{asset('js/dataTables.responsive.js')}}"></script>
+<script src="{{asset('js/sweetalert-dev.js')}}"></script>
+ @include('partials.flash')
 
 <script>
   $(document).ready(function() {

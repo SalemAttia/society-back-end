@@ -85,6 +85,7 @@ class admaincontroller extends Controller
 
         DB::table('newss')->insert(
       array('user_id' => $user_id, 'body' => $body, 'stage_id' => $stage_id, 'attachfile' => $attachfile,'created_at' => $created_at,'updated_at' => $updated_at));
+        flash('success','upload','upload successfully');
         
         return redirect()->back();
     }
@@ -104,6 +105,7 @@ class admaincontroller extends Controller
        
 
        
+        flash('success','new user','new user added successfully');
         
         return redirect()->back();
     }
@@ -135,6 +137,8 @@ class admaincontroller extends Controller
     public function deletegroup(group $group)
     {
          $group->delete();
+        flash('success','delete','delete group successfully');
+
         return redirect()->back();
     }
 
@@ -147,6 +151,8 @@ class admaincontroller extends Controller
      public function deletequestion(quetion $quetion)
     {
          $quetion->delete();
+        flash('success','delete','delete successfully');
+
         return redirect()->back();
     }
 

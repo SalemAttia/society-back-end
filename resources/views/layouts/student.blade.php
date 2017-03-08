@@ -16,6 +16,7 @@
 
   <!-- Custom CSS -->
   <link href="{{asset('css/simple-sidebar.css')}}" rel="stylesheet">
+  <link href="{{asset('css/sweetalert.css')}}" rel="stylesheet">
 
 
   <link href="{{asset('css/home.css')}}" rel="stylesheet">
@@ -39,6 +40,7 @@
       </head>
 
       <body>
+     
 
         <div id="wrapper">
 
@@ -47,7 +49,7 @@
             <ul class="sidebar-nav">
               <li class="sidebar-brand">
 
-               <img src="images/loginpage/one.jpg">
+               <img src="{{asset('images/loginpage/one.jpg')}}">
         
                <h4 style="text-align: center;">{{Auth::user()->name}}</h4>
                <p style="">{{Auth::user()->student->stage_id}} stage
@@ -126,7 +128,7 @@
 
                           <li>
                             <a href="#">
-                              <div class="pic"><img src="images/icon/header-pic.png" alt=""/></div>
+                              <div class="pic"><img src="{{asset('images/icon/header-pic.png')}}" alt=""/></div>
                               <div class="cht-not-rgt">
                                 <div class="cht-snd-name">Anas Abdallah:</div>
                                 <div class="cht-short-msg">“I didn’t like the design can you..</div>
@@ -135,7 +137,7 @@
                           </li>
                           <li>
                             <a href="#">
-                              <div class="pic"><img src="images/icon/header-pic.png" alt=""/></div>
+                              <div class="pic"><img src="{{asset('images/icon/header-pic.png')}}" alt=""/></div>
                               <div class="cht-not-rgt">
                                 <div class="cht-snd-name">Rita Tran</div>
                                 <div class="cht-short-msg">:“I really like the design but can y..</div>
@@ -158,7 +160,7 @@
 
                           <li>
                             <a href="#">
-                              <div class="pic"><img src="images/icon/header-pic.png" alt=""/></div>
+                              <div class="pic"><img src="{{asset('images/icon/header-pic.png')}}" alt=""/></div>
                               <div class="cht-not-rgt">
                                 <div class="cht-snd-name">Anas Abdallah:</div>
                                 <div class="cht-short-msg">“I didn’t like the design can you..</div>
@@ -167,7 +169,7 @@
                           </li>
                           <li>
                             <a href="#">
-                              <div class="pic"><img src="images/icon/header-pic.png" alt=""/></div>
+                              <div class="pic"><img src="{{asset('images/icon/header-pic.png')}}" alt=""/></div>
                               <div class="cht-not-rgt">
                                 <div class="cht-snd-name">Rita Tran</div>
                                 <div class="cht-short-msg">:“I really like the design but can y..</div>
@@ -186,7 +188,7 @@
                   </div>
 
                   <ul class="nav navbar-nav navbar-right col-md-3">
-                    <li><a href="#"><img src="images/index/logo.png" width="135" height="35"></a></li>
+                    <li><a href="#"><img src="{{asset('images/index/logo.png')}}" width="135" height="35"></a></li>
 
                   </ul>
                 </div><!-- /.navbar-collapse -->
@@ -232,6 +234,8 @@
 
 
 <!-- Menu Toggle Script -->
+<script src="{{asset('js/sweetalert-dev.js')}}"></script>
+ @include('partials.flash')
 <script>
   $("#menu-toggle").click(function(e) {
     e.preventDefault();

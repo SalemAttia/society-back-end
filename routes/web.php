@@ -56,6 +56,14 @@ Route::get('/ManageQuestions','admaincontroller@ManageQuestions');
 Route::get('/ManageMaterials','admaincontroller@ManageMaterials');
 Route::post('/uploadnews','admaincontroller@uploadnews');
 
+//test
+Route::get('/salem',function ()
+{
+	return view('test');
+});
+Route::post('/uploaduserphoto','doctorcontroller@uploaduserphoto');
+
+
 
 
 Route::auth();
