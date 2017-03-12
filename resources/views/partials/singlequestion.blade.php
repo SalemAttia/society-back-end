@@ -4,8 +4,13 @@
                     <!-- ask question post -->
               <div class="panel panel-white post panel-shadow"> <!-- postwell -->
                 <div class="post-heading">
+
                   <div class="pull-left image">
+                   @if($question->User->avatar)
+                   <img src="{{asset($question->User->avatar)}}" class="img-circle avatar" alt="user profile image">
+                   @else
                     <img src="http://bootdey.com/img/Content/user_1.jpg" class="img-circle avatar" alt="user profile image">
+                    @endif
                   </div>
                   <div class="pull-left meta">
                     <div class="title h5">
@@ -46,9 +51,15 @@
                    @foreach ($question->answer as $ans)
                   <ul class="comments-list">
                     <li class="comment">
-                      <a class="pull-left" href="#">
-                        <img class="avatar" src="http://bootdey.com/img/Content/user_1.jpg" alt="avatar">
+                       @if($ans->User->avatar)
+          <a class="pull-left" href="#">
+               <img class="avatar" src="{{asset($ans->User->avatar)}}">
+               </a>
+               @else
+                <a class="pull-left" href="#">
+                <img class="avatar" src="http://bootdey.com/img/Content/user_1.jpg" alt="avatar">
                       </a>
+              @endif
                       <div class="comment-body">
                         <div class="comment-heading">
                           <h4 class="user"><?php

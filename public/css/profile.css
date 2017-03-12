@@ -71,9 +71,10 @@
 .maincontant .picture{
     height:150px;
     width:150px;
-    position:absolute;
-    top: 75px;
-    left:-75px;
+    position: absolute;
+    top: 0 !important;
+    left: 0 !important;
+   
 }
 
 .maincontant .picture_mob{
@@ -99,6 +100,7 @@
 }
 
 .panel {
+      padding: 10px 0;
     margin-bottom: 20px;
     background-color: #fff;
     border: 1px solid transparent;

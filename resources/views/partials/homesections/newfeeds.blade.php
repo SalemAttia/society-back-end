@@ -3,6 +3,7 @@
 
             <div class="col-sm-10 col-sm-offset-1">
                <div class="col-md-12" >
+               <br>
                 <div class="btn-pref btn-group btn-group-justified btn-group-lg" role="group" aria-label="...">
                   <div class="btn-group" role="group">
                     <button type="button" id="stars" class="btn btn-primary" href="#tab1" data-toggle="tab"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
@@ -16,8 +17,7 @@
                   </div>
                   </div>
                 </div>
-                <br><br>
-                <br><br>
+                <div style="margin-bottom: 8%;"></div>
           
                 
                   <div class="tab-content"> <!-- table contant -->
@@ -28,7 +28,13 @@
               <div class="panel panel-white post panel-shadow"> <!-- postwell -->
                 <div class="post-heading">
                   <div class="pull-left image">
-                    <img src="http://bootdey.com/img/Content/user_1.jpg" class="img-circle avatar" alt="user profile image">
+                   @if($question->User->avatar)
+
+               <img class="img-circle avatar" src="{{$question->User->avatar}}">
+               @else
+               <img src="http://bootdey.com/img/Content/user_1.jpg" class="img-circle avatar" alt="user profile image">
+              @endif
+                   
                   </div>
                   <div class="pull-left meta">
                     <div class="title h5">
@@ -69,9 +75,17 @@
                    @foreach ($question->answer as $ans)
                   <ul class="comments-list">
                     <li class="comment">
-                      <a class="pull-left" href="#">
-                        <img class="avatar" src="http://bootdey.com/img/Content/user_1.jpg" alt="avatar">
+                      @if($ans['User']->avatar)
+          <a class="pull-left" href="#">
+               <img class="avatar" src="{{$ans['User']->avatar}}">
+               </a>
+               @else
+                <a class="pull-left" href="#">
+                <img class="avatar" src="http://bootdey.com/img/Content/user_1.jpg" alt="avatar">
                       </a>
+              @endif
+                     
+                       
                       <div class="comment-body">
                         <div class="comment-heading">
                           <h4 class="user"><?php

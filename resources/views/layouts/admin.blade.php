@@ -29,6 +29,21 @@
  @yield('css')
  
 
+<style type="text/css"> 
+#sidebar-wrapper::-webkit-scrollbar {
+  width: 1px;
+}
+#sidebar-wrapper::-webkit-scrollbar-track {
+  background: rgb(255, 255, 255);
+  margin-left: 10px;
+}
+#sidebar-wrapper::-webkit-scrollbar-thumb{
+  background: rgb(2, 136, 209);
+}
+#sidebar-wrapper{
+  overflow-x: hidden;
+}
+</style>
 
   <!-- databastable -->
   <link href="{{asset('css/dataTables.responsive.css')}}" rel="stylesheet">
@@ -57,8 +72,13 @@
          <div id="sidebar-wrapper">
           <ul class="sidebar-nav">
            <li class="sidebar-brand">
+            @if(Auth::user()->avatar)
 
-               <img src="images/loginpage/one.jpg">
+               <img src="{{asset(Auth::user()->avatar)}}">
+               @else
+               <img src="{{asset('images/loginpage/one.jpg')}}">
+              @endif
+
                <h3>{{Auth::user()->name}}</h3>
                <p>Fci-admin</p>
 

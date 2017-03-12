@@ -5,7 +5,12 @@
               <div class="panel panel-white post panel-shadow"> <!-- postwell -->
                 <div class="post-heading">
                   <div class="pull-left image">
-                    <img src="http://bootdey.com/img/Content/user_1.jpg" class="img-circle avatar" alt="user profile image">
+                  @if($question->User->avatar)
+                  <img src="{{asset($question->User->avatar)}}" class="img-circle avatar" alt="user profile image">
+                  @else
+                  <img src="http://bootdey.com/img/Content/user_1.jpg" class="img-circle avatar" alt="user profile image">
+                  @endif
+                    
                   </div>
                   <div class="pull-left meta">
                     <div class="title h5">
@@ -47,7 +52,12 @@
                   <ul class="comments-list">
                     <li class="comment">
                       <a class="pull-left" href="#">
-                        <img class="avatar" src="http://bootdey.com/img/Content/user_1.jpg" alt="avatar">
+                      @if($ans['User']->avatar)
+                       <img class="avatar" src="{{asset($ans['User']->avatar)}}" alt="avatar">
+                      @else
+                       <img class="avatar" src="http://bootdey.com/img/Content/user_1.jpg" alt="avatar">
+                      @endif
+                       
                       </a>
                       <div class="comment-body">
                         <div class="comment-heading">

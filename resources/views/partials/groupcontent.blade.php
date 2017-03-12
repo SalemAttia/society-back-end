@@ -35,7 +35,11 @@
               <div class="panel panel-white post panel-shadow"> <!-- postwell -->
                 <div class="post-heading">
                   <div class="pull-left image">
+                     @if($question->User->avatar)
+                   <img src="{{asset($question->User->avatar)}}" class="img-circle avatar" alt="user profile image">
+                   @else
                     <img src="http://bootdey.com/img/Content/user_1.jpg" class="img-circle avatar" alt="user profile image">
+                    @endif
                   </div>
                   <div class="pull-left meta">
                     <div class="title h5">
@@ -77,7 +81,15 @@
                   <ul class="comments-list">
                     <li class="comment">
                       <a class="pull-left" href="#">
-                        <img class="avatar" src="http://bootdey.com/img/Content/user_1.jpg" alt="avatar">
+                       @if($ans->User->avatar)
+          <a class="pull-left" href="#">
+               <img class="avatar" src="{{asset($ans->User->avatar)}}">
+               </a>
+               @else
+                <a class="pull-left" href="#">
+                <img class="avatar" src="http://bootdey.com/img/Content/user_1.jpg" alt="avatar">
+                      </a>
+              @endif
                       </a>
                       <div class="comment-body">
                         <div class="comment-heading">
@@ -127,7 +139,7 @@
                         <td > {{$matrial->id}}</td>
                         <td> {{$matrial->User->name}}</td>
                         <td>{{$matrial->name}}</td>
-                        <td> <a href="{{$matrial->attachfile}}" class="btn btn-default" style="margin-left: 39%;"><em class="fa fa-cloud-download"></em></a></td>
+                        <td> <a href="{{route('downloadmatrial',$matrial->attachfile)}}" class="btn btn-default" style="margin-left: 39%;"><em class="fa fa-cloud-download"></em></a></td>
                       </tr>
                         @endforeach
                       

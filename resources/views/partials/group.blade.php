@@ -27,13 +27,13 @@
         </div>
         <div id="collapseOne" class="panel-collapse collapse in">
           <ul class="list-group">
-            <li class="list-group-item"><span class="glyphicon glyphicon-question-sign"></span><a href="">Questions</a><span class="badge">42</span></li>
+            <li class="list-group-item"><span class="glyphicon glyphicon-question-sign"></span><a href="">Questions</a><span class="badge">{{$questioncount}}</span></li>
 
-            <li class="list-group-item"><span class="glyphicon glyphicon-flash text-success"></span><a href="#">News</a><span class="badge">42</span></li>
+            <li class="list-group-item"><span class="glyphicon glyphicon-flash text-success"></span><a href="#">News</a><span class="badge"></span></li>
 
-            <li class="list-group-item"><span class="glyphicon glyphicon-file text-info"></span><a href="#">Files</a><span class="badge">42</span></li>
+            <li class="list-group-item"><span class="glyphicon glyphicon-file text-info"></span><a href="#">Files</a><span class="badge">{{$matrialcount}}</span></li>
 
-            <li class="list-group-item"> <span class="glyphicon glyphicon-comment text-success"></span><a href="">Comments</a><span class="badge">42</span></li>
+            <li class="list-group-item"> <span class="glyphicon glyphicon-comment text-success"></span><a href="">Comments</a><span class="badge">{{$answerscount}}</span></li>
 
           </ul>
         </div>

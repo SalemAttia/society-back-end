@@ -96,12 +96,14 @@ class admaincontroller extends Controller
         $rol = $request->input('rol');
         $email = $request->input('email');
         $password = $request->input('password');
+        $avatar = 'uploads/photo/1489158967996782_1548108335506832_3250857313487702482_n.jpg';
+        $gender = 0;
         $created_at = date("Y-m-d H:i:s");
         $updated_at = date("Y-m-d H:i:s");
 
         $stage_id = $request->input('stage_id');
          DB::table('users')->insert(
-         array('name' => $request->name,'rol' => $request->rol,'email' => $request->email,'password' => bcrypt($request->password),'created_at' => $created_at,'updated_at' => $updated_at));
+         array('name' => $request->name,'rol' => $request->rol,'email' => $request->email,'password' => bcrypt($request->password),'avatar' => $avatar,'gendar' => $gender,'created_at' => $created_at,'updated_at' => $updated_at));
        
 
        

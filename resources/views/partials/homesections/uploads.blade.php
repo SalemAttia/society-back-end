@@ -10,8 +10,16 @@
 
 		         <div class="panel panel-white post panel-shadow"> <!-- postwell -->
                 <div class="post-heading">
+
                   <div class="pull-left image">
-                    <img src="http://bootdey.com/img/Content/user_1.jpg" class="img-circle avatar" alt="user profile image">
+
+             @if($matrial->User->avatar)
+
+               <img class="img-circle avatar" alt="user profile image" src="{{asset($matrial->User->avatar)}}">
+               @else
+                <img src="http://lorempixel.com/output/people-q-c-100-100-1.jpg" class="img-circle avatar" alt="user profile image" />
+              @endif
+                    
                   </div>
                   <div class="pull-left meta">
                   <div class="title h5">

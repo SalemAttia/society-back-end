@@ -20,10 +20,25 @@
 
 
   <link href="{{asset('css/home.css')}}" rel="stylesheet">
-
+<style type="text/css"> 
+#sidebar-wrapper::-webkit-scrollbar {
+  width: 1px;
+}
+#sidebar-wrapper::-webkit-scrollbar-track {
+  background: rgb(255, 255, 255);
+  margin-left: 10px;
+}
+#sidebar-wrapper::-webkit-scrollbar-thumb{
+  background: rgb(2, 136, 209);
+}
+#sidebar-wrapper{
+  overflow-x: hidden;
+}
+</style>
 
   <!-- css of the main contant of friend page -->
  @yield('css')
+  <link href="{{asset('css/responsive.css')}}" rel="stylesheet">
  
 
 
@@ -48,9 +63,12 @@
           <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
               <li class="sidebar-brand">
+               @if(Auth::user()->avatar)
 
+               <img src="{{asset(Auth::user()->avatar)}}">
+               @else
                <img src="{{asset('images/loginpage/one.jpg')}}">
-        
+              @endif
                <h4 style="text-align: center;">{{Auth::user()->name}}</h4>
                <p style="">{{Auth::user()->student->stage_id}} stage
               </p>

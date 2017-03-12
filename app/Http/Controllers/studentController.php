@@ -52,11 +52,13 @@ class studentController extends Controller
                    $userfollow[] = User::with('student','student.stage','doctor')->where('id',$follower->user_id)->get(); 
                  }
 
+                 $numfo = $followers->count();
+
                  //flash
 
                  
         
-        return view('student.profile',compact('user','questions','userfollow'));
+        return view('student.profile',compact('user','questions','userfollow','numfo'));
        }else{
          $questions = array();
          $subjects = hasSubject::with('subject','subject.matrial','subject.question','subject.question.answer','subject.question.answer.User','doctor')->where('user_id',$user->id)->get();
@@ -66,6 +68,7 @@ class studentController extends Controller
                      foreach ($question->answer as $answer) {
                          if ($answer->User->id == $user->id) {
                             array_push($questions, $question);
+                            $numquestion++;
                          }
                       } 
                   } 
@@ -87,9 +90,11 @@ class studentController extends Controller
                    $userfollower[] = User::with('student','student.stage')->where('id',$follower->thefollower)->get(); 
                  }
 
+                 $followme = $followers->count();
+
            
 
-            return view('doctors.profile',compact('subjects','questions','numquestion','nummatrial','user','matrials','userfollower'));
+            return view('doctors.profile',compact('subjects','questions','numquestion','nummatrial','user','matrials','userfollower','followme'));
 
        }
         
@@ -109,6 +114,7 @@ class studentController extends Controller
                  foreach ($followers as $follower) {
                    $userfollow[] = User::with('student','student.stage','doctor')->where('id',$follower->user_id)->get(); 
                  }
+                 $countfollower = follower::where('thefollower',$id)->count();
 
                 //i follow he
                $followering = follower::with('user','user.student.stage')->where('thefollower',\Auth::user()->id)->select('*')->get();
@@ -116,24 +122,56 @@ class studentController extends Controller
                  foreach ($followering as $followering) {
                    $userfollowing[] = User::with('doctor')->where('id',$followering->user_id)->get(); 
                  }
+
                 if($userfollowing){
+                
                  foreach($userfollowing as $following){
+                 
                    if ($following[0]['id'] == $id) {
                        $ifollow = 1;
+                       break;
                    }else{
                       $ifollow = 0;
+                      continue;
                    }
                    
                  }
              }else{
                 $ifollow = 0;
              }
+             //return $ifollow;
 
                  
 
         
-              return view('student.userprofile',compact('user','questions','userfollow','userfollowing','ifollow'));
+              return view('student.userprofile',compact('user','questions','userfollow','userfollowing','ifollow','countfollower'));
         }else{
+
+          //i follow he
+               $followering = follower::with('user','user.student.stage')->where('thefollower',\Auth::user()->id)->select('*')->get();
+                 $userfo = array();
+                 foreach ($followering as $followering) {
+                   $userfo[] = User::with('doctor')->where('id',$followering->user_id)->get(); 
+                 }
+
+                if($userfo){
+                
+                 foreach($userfo as $following){
+                 
+                   if ($following[0]['id'] == $id) {
+                       $ifollow = 1;
+                       break;
+                   }else{
+                      $ifollow = 0;
+                      continue;
+                   }
+                   
+                 }
+             }else{
+                $ifollow = 0;
+             }
+             //return $ifollow;
+
              $user = User::with('subject','answer','answer.quetion','answer.quetion.User','doctor')->where('id',$id)->get();
              
                $matrials = matrial::with('subject')->where('user_id', $id)->orderBy('created_at', 'desc')->get();
@@ -144,6 +182,10 @@ class studentController extends Controller
                  foreach ($followers as $follower) {
                    $userfollower[] = User::with('student','student.stage')->where('id',$follower->thefollower)->get(); 
                  }
+                 //number of user follow me
+                 $followme = $followers->count();
+
+
                  $questions = array();
               $subjects = hasSubject::with('subject','subject.matrial','subject.question','subject.question.answer','subject.question.answer.User','doctor')->where('user_id',$id)->get();
             $numquestion = 0; $nummatrial = 0;
@@ -152,6 +194,7 @@ class studentController extends Controller
                      foreach ($question->answer as $answer) {
                          if ($answer->User->id == $id) {
                             array_push($questions, $question);
+                            $numquestion++;
                          }
                       } 
                   } 
@@ -166,7 +209,7 @@ class studentController extends Controller
               
 
 
-               return view('student.docprofile',compact('questions','user','matrials','userfollower'));
+               return view('student.docprofile',compact('questions','user','matrials','userfollower','ifollow','followme','numquestion'));
         }
        
     }
@@ -198,13 +241,19 @@ class studentController extends Controller
            
        //get quetion for this group depand on subject
          $questions = quetion::with('User','User.student.stage.subject','answer','answer.User','subject','subject.stage')->where('subject_id', $group[0]->subject->id)->orderBy('created_at', 'desc')->get();
-        
+         $answerscount = 0;
+        foreach ($questions as $question) {
+         $answerscount+= $question->answer->count();
+        }
+
+        $questioncount =  $questions->count();
+       
         
 
          $matrials = matrial::with('User','subject')->where('subject_id', $group[0]->subject->id)->orderBy('created_at', 'desc')->get();
         
-        //return  $matrial;
-        return view('student.group',compact('group','questions','matrials','students'));
+        $matrialcount =  $matrials->count();
+        return view('student.group',compact('group','questions','matrials','students','answerscount','questioncount','matrialcount'));
     }
 
      public function friends()
@@ -269,6 +318,22 @@ class studentController extends Controller
 
         return redirect()->back();
        
+    }
+    public function completedata(Request $request)
+    {
+    
+     DB::table('students')->insert(
+      array('user_id' => $request->user_id, 'stage_id' => $request->stage_id, 'faclaty_id' => $request->faclaty_id));
+     $attachfile = $request->file('attachfile');
+       
+        $namea = time() . $attachfile->getClientOriginalName();
+        $attachfile->move('uploads/photo',$namea);
+     DB::table('users')
+            ->where('id', $request->user_id)
+            ->update(['firsttime' => 0,'avatar' =>'uploads/photo/'.$namea, 'gendar' => $request->gendar]);
+        flash('success','complete','data created successfully');
+
+        return redirect('/');
     }
     public function postanswer(answerquestion $request)
     {

@@ -32,6 +32,8 @@ body::-webkit-scrollbar-thumb{
 	color: #fff !important;
 	font-size: 17px !important;
 }
+
+
 .home_menu_icon{
 	background: url(../images/index/menu.png)no-repeat;
     display: inline-block;

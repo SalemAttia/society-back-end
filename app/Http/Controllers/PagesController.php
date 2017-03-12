@@ -67,6 +67,13 @@ class PagesController extends Controller
         }
         else{
 
+            if (\Auth::user()->firsttime == 1) {
+                $user = \Auth::user();
+                $faculties = faculty::get()->all();
+                $stages = stage::get()->all();
+               return view('firsttime',compact('user','faculties','stages'));
+            }
+            else{
             //stage_id
             $stage_id = DB::table('students')->where('user_id', $auth_id)->select('stage_id')->get();
             $stage_id = $stage_id[0]->stage_id;
@@ -113,6 +120,7 @@ class PagesController extends Controller
               
         	return view('student.home',compact('subjects','nummatrial','numquestion','questions','matrials'));
         }
+    }
     	
     }
 }

@@ -11,14 +11,14 @@
                 </div>
              </div>
              @endif
-              <div class="row" style="padding-left: 30px;">  <!-- row -->
+              <div class="row homesidecontant" style="padding-left: 30px;">  <!-- row -->
                 <!-- saidbar content -->
                 <div class="well col-md-4">
-                 7 Feb 2017 
+                 <?php echo date('m/d/Y'); ?>
                  <hr>
                  <ul class="nav nav-pills nav-stacked">
                   <li role="presentation" title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Question asked this day"><a href="{{url('questions')}}"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> Questions  {{$numquestion}} </a></li>
-                  <li role="presentation"  data-toggle="tooltip" data-placement="bottom" data-original-title="File uploads this day"><a href="{{url('uploads')}}"><span class="glyphicon glyphicon-open" aria-hidden="true"></span> Uploads  {{$nummatrial}}</a>   </li>
+                  <li role="presentation"  data-toggle="tooltip" data-placement="bottom" data-original-title="File uploads this day"><a href="{{url('upload')}}"><span class="glyphicon glyphicon-open" aria-hidden="true"></span> Uploads  {{$nummatrial}}</a>   </li>
                   <li role="presentation"  data-toggle="tooltip" data-placement="bottom" data-original-title="all actions in your Groups"><a href="{{url('groups')}}"><span class="fa fa-users" aria-hidden="true"></span> Groups    {{$subjects->count()}}</a></li>
 
                 </ul>

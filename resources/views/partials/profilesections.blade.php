@@ -9,7 +9,13 @@
                <div class="panel panel-white post panel-shadow"> <!-- postwell -->
                 <div class="post-heading">
                   <div class="pull-left image">
-                    <img src="http://bootdey.com/img/Content/user_1.jpg" class="img-circle avatar" alt="user profile image">
+                   @if($question->User->avatar)
+
+               <img class="img-circle avatar" src="{{asset($question->User->avatar)}}">
+               @else
+                 <img src="http://bootdey.com/img/Content/user_1.jpg" class="img-circle avatar" alt="user profile image">
+              @endif
+                   
                   </div>
                   <div class="pull-left meta">
                     <div class="title h5">
@@ -29,7 +35,9 @@
                     <a href="#" class="btn btn-default stat-item">
                       <i class="fa fa-share icon"></i>12
                     </a>
+                    @if($question->User->id == Auth::user()->id)
                     <a href="updatequestion/{{$question->id}}" class="pull-right btn btn-info">Edit</a>
+                    @endif
                   </div>
                 </div>
                 <div class="post-footer">
@@ -53,7 +61,12 @@
                   <ul class="comments-list">
                     <li class="comment">
                       <a class="pull-left" href="#">
-                        <img class="avatar" src="http://bootdey.com/img/Content/user_1.jpg" alt="avatar">
+                      @if($ans->User->avatar)
+                      <img class="avatar" src="{{asset($ans->User->avatar)}}" alt="avatar">
+                      @else
+                      <img class="avatar" src="http://bootdey.com/img/Content/user_1.jpg" alt="avatar">
+                      @endif
+                        
                       </a>
                       <div class="comment-body">
                         <div class="comment-heading">
@@ -90,7 +103,7 @@
           <div class="col-sm-10 col-sm-offset-1 tab-pane fade in" id="tab2">
                  <!-- who follow the doctor -->
               <ul>
-
+                
                  @foreach($userfollow as $following)
                   <li>
                      {{$following[0]->name}}
